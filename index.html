@@ -407,7 +407,7 @@
         <h1>Les vraies fiches d'apprentissage <em>d'un professeur de PCT</em>, prêtes à suivre.</h1>
         <p class="lead">Le Kit du Prof PCT rassemble le matériel réellement utilisé en classe — objectifs, déroulement de séance, points clés — pour chaque niveau, de la 6ème à la Terminale. Ouvrez la fiche, suivez la trame, enseignez avec confiance.</p>
         <div class="hero-actions">
-          <a href="https://fykldcqv.mychariow.co/prd_9fao6x9j/checkout" class="btn btn-gold">Acheter maintenant</a>
+          <a href="#" id="chariow-widget-btn" class="btn btn-gold">Acheter maintenant</a>
           <a href="#contenu" class="btn btn-ghost">Voir le contenu</a>
         </div>
         <div class="hero-stats">
@@ -575,5 +575,16 @@
       els.forEach(function(el){ el.classList.add('is-visible'); });
     }
   </script>
+<script>
+document.getElementById("chariow-widget-btn").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const widget = document.querySelector("#chariow-widget button");
+
+    if (widget) {
+        widget.click();
+    }
+});
+</script>
 </body>
 </html>
