@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Apprendre mieux, pas seulement plus</title>
+<style>
+:root{
+  --blue:#1677FF;
+  --blue-dark:#0B57C7;
+  --blue-pale:#EAF2FF;
+  --blue-pale2:#F5F9FF;
+  --ink:#14161C;
+  --ink-soft:#3C4049;
+  --gray:#6B7280;
+  --gray-line:#E3E6EC;
+  --paper:#FFFFFF;
+  --paper-soft:#F6F7FA;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#e9eaee; }
+body{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  color:var(--ink);
+  font-size:10.6pt;
+  line-height:1.62;
+}
+
+/* ---------- FORMAT FEUILLE A4 (ÉCRAN & IMPRESSION) ---------- */
+@page{
+  size:A4;
+  margin: 0;
+}
+@page content{
+  size:A4;
+  margin: 24mm 20mm 22mm 20mm;
+  @bottom-center{
+    content: counter(page);
+    font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size:8.5pt;
+    color:#9AA1AC;
+  }
+}
+@page cover{ size:A4; margin:0; }
+@page nomargin{ size:A4; margin:0; }
+
+.cover-page{ page:cover; }
+.flow{ page:content; page-break-before:always; }
+.full{ page:nomargin; }
+
+.cover-page, .flow {
+  width: 210mm;
+  min-height: 297mm;
+  max-width: 210mm;
+  margin: 8mm auto;
+  background: var(--paper);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.06);
+  border-radius: 1px;
+  position: relative;
+  page-break-after: always;
+}
+
+.flow {
+  padding: 24mm 20mm 22mm 20mm;
+}
+
+.cover-page {
+  padding: 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+@media print {
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .cover-page, .flow {
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-width: 210mm !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+  }
+  .cover {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+  }
+  .flow {
+    padding: 24mm 20mm 22mm 20mm !important;
+  }
+}
+
+/* ---------- COUVERTURE (ORIGINALE EXACTE) ---------- */
+.cover{
+  width:210mm; height:297mm;
+  background:var(--ink);
+  position:relative;
+  color:#fff;
+  overflow:hidden;
+}
+.cover .accent-line{
+  position:absolute; left:0; top:0; bottom:0; width:6mm;
+  background:var(--blue);
+}
+.cover .grid-dot{
+  position:absolute; right:18mm; top:22mm;
+  width:26mm; height:26mm;
+  background-image:radial-gradient(#2A3244 1.1px, transparent 1.1px);
+  background-size:5mm 5mm;
+  opacity:.9;
+}
+.cover-inner{
+  position:absolute; left:24mm; right:24mm; top:0; bottom:0;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.cover-kicker{
+  font-size:10.5pt; letter-spacing:3px; text-transform:uppercase;
+  color:var(--blue); font-weight:700; margin-bottom:14mm;
+}
+.cover-title{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:900;
+  font-size:40pt; line-height:1.06; color:#fff; margin:0 0 8mm 0;
+  max-width:150mm;
+}
+.cover-title span{ color:var(--blue); }
+.cover-subtitle{
+  font-size:13pt; color:#B9C0CE; font-weight:400; line-height:1.5;
+  max-width:120mm; margin:0;
+  border-left:2px solid var(--blue); padding-left:6mm;
+}
+.cover-footer{
+  position:absolute; left:24mm; bottom:20mm; right:24mm;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:9pt; color:#7A8294; letter-spacing:1px; text-transform:uppercase;
+}
+.cover-footer .dotline{
+  flex:1; height:1px; background:#2A3244; margin:0 8mm;
+}
+
+/* ---------- SOMMAIRE ---------- */
+.toc-title{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:800; font-size:22pt;
+  color:var(--ink); margin:0 0 3mm 0;
+}
+.toc-rule{ height:2px; background:var(--blue); width:16mm; margin-bottom:12mm;}
+.toc-list{ list-style:none; margin:0; padding:0; }
+.toc-list li{
+  display:flex; align-items:baseline; gap:3mm;
+  padding:3.4mm 0; border-bottom:1px solid var(--gray-line);
+  font-size:11pt;
+}
+.toc-num{ color:var(--blue); font-weight:700; width:9mm; font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;}
+.toc-label{ flex:1; font-weight:500; }
+.toc-sub{ color:var(--gray); font-size:9pt; }
+
+/* ---------- EN-TÊTE DE CHAPITRE (DESIGN EXACT IMAGE) ---------- */
+.chapter-num{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-weight:900;
+  font-size:46pt;
+  color:var(--blue-pale);
+  line-height:1;
+  margin:0 0 -6.5mm 0;
+  position:relative;
+  z-index:1;
+  user-select:none;
+}
+
+.kicker{
+  font-size:9.5pt;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--blue);
+  font-weight:700;
+  margin:0 0 4mm 0;
+  position:relative;
+  z-index:2;
+}
+
+h1.chapter-title{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-weight:800;
+  font-size:25pt;
+  color:var(--ink);
+  line-height:1.12;
+  margin:0 0 5mm 0;
+  page-break-after:avoid;
+  position:relative;
+  z-index:2;
+}
+
+.chapter-lede{
+  font-size:12.5pt;
+  color:var(--ink-soft);
+  font-weight:500;
+  line-height:1.5;
+  margin:0 0 9mm 0;
+  max-width:150mm;
+  page-break-after:avoid;
+}
+
+.rule{ height:1px; background:var(--gray-line); margin:8mm 0; border:0; }
+.rule-blue{ height:2px; background:var(--blue); width:14mm; margin:9mm 0 6mm 0; border:0; }
+
+h2.section-title{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:800; font-size:14.5pt; color:var(--ink);
+  margin:9mm 0 4mm 0; page-break-after:avoid;
+  display:flex; align-items:center; gap:3mm;
+}
+h2.section-title::before{
+  content:""; display:inline-block; width:3.4mm; height:3.4mm;
+  background:var(--blue); border-radius:1px; flex:none;
+}
+h3.sub-title{
+  font-weight:700; font-size:11.5pt; color:var(--ink); margin:6mm 0 2.5mm 0;
+  page-break-after:avoid;
+}
+
+p{ margin:0 0 3.6mm 0; }
+.lead{ font-size:11.5pt; color:var(--ink-soft); }
+
+/* ---------- CITATIONS & ENCADRÉS ---------- */
+.pull-quote{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:700; font-size:15pt;
+  line-height:1.4; color:var(--ink);
+  border-left:3px solid var(--blue); padding:2mm 0 2mm 7mm;
+  margin:8mm 0; max-width:150mm;
+}
+.key-quote{
+  background:var(--ink); color:#fff; border-radius:3mm;
+  padding:9mm 10mm; margin:9mm 0;
+  page-break-inside:avoid;
+}
+.key-quote .label{
+  color:var(--blue); font-size:8.5pt; letter-spacing:2px; text-transform:uppercase;
+  font-weight:700; margin:0 0 3mm 0;
+}
+.key-quote .text{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:700; font-size:14pt; line-height:1.42; margin:0;
+}
+
+.note-box{
+  background:var(--blue-pale2); border:1px solid var(--blue-pale);
+  border-left:3px solid var(--blue);
+  border-radius:2mm; padding:6mm 7mm; margin:6mm 0;
+  page-break-inside:avoid;
+}
+.note-box .note-title{
+  font-weight:700; color:var(--blue-dark); margin:0 0 1.6mm 0;
+  text-transform:uppercase; letter-spacing:.5px; font-size:8.7pt;
+}
+
+/* ---------- GRILLES & CARTES ---------- */
+.method-grid{
+  display:flex; flex-direction:column; gap:4.5mm; margin:7mm 0;
+}
+.method-card{
+  display:flex; gap:5mm; align-items:flex-start;
+  border:1px solid var(--gray-line); border-radius:2.5mm;
+  padding:5.5mm 6.5mm; background:#fff;
+  page-break-inside:avoid;
+}
+.method-card .m-icon{
+  flex:none; width:11mm; height:11mm; border-radius:2mm;
+  background:var(--blue-pale); color:var(--blue);
+  display:flex; align-items:center; justify-content:center;
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:800; font-size:12pt;
+}
+.method-card .m-name{ font-weight:700; font-size:11.5pt; margin:0 0 1mm 0; color:var(--ink);}
+.method-card .m-desc{ font-size:9.7pt; color:var(--ink-soft); margin:0; line-height:1.5;}
+
+.step-flow{ margin:7mm 0; }
+.step{
+  display:flex; gap:5mm; align-items:flex-start;
+  padding:4mm 0; position:relative;
+}
+.step .step-num{
+  flex:none; width:9mm; height:9mm; border-radius:50%;
+  background:var(--blue); color:#fff; font-weight:800; font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  display:flex; align-items:center; justify-content:center; font-size:10.5pt;
+  position:relative; z-index:1;
+}
+.step:not(:last-child) .step-num::after{
+  content:""; position:absolute; top:9mm; left:50%; transform:translateX(-50%);
+  width:0.6mm; height:9mm; background:var(--blue-pale);
+}
+.step .step-body{ padding-top:0.6mm; }
+.step .step-title{ font-weight:700; font-size:10.8pt; margin:0 0 1mm 0; }
+.step .step-desc{ font-size:9.6pt; color:var(--ink-soft); margin:0; }
+
+.card-row{ display:flex; gap:4mm; margin:7mm 0; }
+.test-card{
+  flex:1; border:1px solid var(--gray-line); border-radius:2.5mm;
+  padding:5.5mm; background:var(--paper-soft);
+}
+.test-card .t-title{ font-weight:700; font-size:10.3pt; color:var(--blue-dark); margin:0 0 2mm 0;}
+.test-card .t-desc{ font-size:9.2pt; color:var(--ink-soft); margin:0; line-height:1.5;}
+
+.worksheet{
+  border:1px solid var(--gray-line); border-radius:2.5mm;
+  padding:7mm 8mm; margin:7mm 0; background:#fff;
+  page-break-inside:avoid;
+}
+.worksheet .ws-title{
+  font-weight:700; font-size:9pt; letter-spacing:1.5px; text-transform:uppercase;
+  color:var(--blue); margin:0 0 5mm 0;
+}
+.ws-field{ margin-bottom:6mm; }
+.ws-field .ws-q{ font-weight:600; font-size:10pt; margin:0 0 2mm 0; }
+.ws-line{ border-bottom:1px solid #C7CCD6; height:6.5mm; }
+.ws-line.short{ height:5mm; }
+
+table.clean{ width:100%; border-collapse:collapse; margin:6mm 0; }
+table.clean th{
+  background:var(--ink); color:#fff; font-size:8.6pt; font-weight:700;
+  text-align:left; padding:3.2mm 3mm; letter-spacing:.3px;
+}
+table.clean th:first-child{ border-radius:1.5mm 0 0 0; }
+table.clean th:last-child{ border-radius:0 1.5mm 0 0; }
+table.clean td{
+  border-bottom:1px solid var(--gray-line); padding:3.4mm 3mm;
+  font-size:9.4pt; color:var(--ink-soft);
+}
+table.clean tr:nth-child(even) td{ background:var(--paper-soft); }
+.chk{ display:inline-block; width:4mm; height:4mm; border:1px solid #AFB6C2; vertical-align:middle; }
+
+.formula{
+  display:flex; align-items:center; justify-content:center; gap:4mm;
+  background:var(--blue); color:#fff; border-radius:2.5mm;
+  padding:7mm; margin:8mm 0; font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:800;
+  font-size:13pt; text-align:center; flex-wrap:wrap;
+  page-break-inside:avoid;
+}
+.formula .plus{ opacity:.7; font-weight:400; font-size:13pt; }
+
+.flow-diagram{ margin:7mm 0; display:flex; flex-direction:column; align-items:stretch; }
+.flow-step{
+  border:1px solid var(--gray-line); background:#fff; border-radius:2mm;
+  padding:3.6mm 5mm; font-weight:600; font-size:9.8pt; color:var(--ink);
+  text-align:center;
+}
+.flow-arrow{ text-align:center; color:var(--blue); font-size:11pt; padding:1mm 0; font-weight:700;}
+
+/* ---------- PUBLICITÉ CRÉDIBLE : MIEUX PRATIQUER AVEC LES ÉPREUVES ---------- */
+.ad-box{
+  border: 1.5px solid #BAE0FF;
+  background: linear-gradient(180deg, #F5F9FF 0%, #FFFFFF 100%);
+  border-radius: 3mm;
+  padding: 6.5mm 7.5mm;
+  margin: 7mm 0;
+  box-shadow: 0 2px 10px rgba(22, 119, 255, 0.06);
+  page-break-inside: avoid;
+}
+.ad-box .ad-top-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5mm;
+  flex-wrap: wrap;
+  gap: 2mm;
+}
+.ad-box .ad-badge{
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-size: 7.8pt;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 1.2mm 3mm;
+  border-radius: 1mm;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.ad-box .ad-title{
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 900;
+  font-size: 14pt;
+  color: var(--ink);
+  margin: 0 0 2mm 0;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+}
+.ad-box .ad-lead{
+  font-size: 9.6pt;
+  color: var(--ink-soft);
+  margin: 0 0 3.5mm 0;
+  line-height: 1.48;
+}
+.ad-checklist{
+  list-style: none;
+  margin: 0 0 4mm 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+.ad-checklist li{
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5mm;
+  font-size: 9.2pt;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.ad-checklist .check-icon{
+  flex: none;
+  color: #12B76A;
+  font-weight: 800;
+  font-size: 10.5pt;
+  line-height: 1.2;
+}
+.ad-delivery-box{
+  background: #FFFFFF;
+  border: 1px dashed #91CAFF;
+  border-radius: 2mm;
+  padding: 3mm 4mm;
+  margin-bottom: 3.5mm;
+  font-size: 8.8pt;
+  color: #1D2939;
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  line-height: 1.45;
+}
+.ad-pricing-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 2mm;
+  padding: 3.5mm 5mm;
+  margin-bottom: 3mm;
+  flex-wrap: wrap;
+  gap: 3mm;
+}
+.ad-price-col{
+  display: flex;
+  align-items: baseline;
+  gap: 2.5mm;
+}
+.ad-old-price{
+  font-size: 9.5pt;
+  color: #8A93A3;
+  text-decoration: line-through;
+}
+.ad-new-price{
+  font-size: 14pt;
+  font-weight: 900;
+  color: #fff;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.ad-coupon{
+  background: #FFF1F0;
+  border: 1px dashed #FFA39E;
+  color: #CF1322;
+  font-weight: 800;
+  font-size: 8.5pt;
+  padding: 1.5mm 3mm;
+  border-radius: 1.2mm;
+  letter-spacing: 0.5px;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.ad-btn{
+  display: block;
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  text-align: center;
+  font-weight: 800;
+  font-size: 9.8pt;
+  padding: 3.2mm 4mm;
+  border-radius: 1.8mm;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(22, 119, 255, 0.35);
+  margin-bottom: 2mm;
+}
+.ad-footer-note{
+  font-size: 7.8pt;
+  color: var(--gray);
+  text-align: center;
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* ---------- ENCADRÉ COURS DE MAISON & SOUTIEN SCIENTIFIQUE ---------- */
+.tutor-box{
+  border: 1.5px solid #A7F3D0;
+  background: linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 100%);
+  border-radius: 3mm;
+  padding: 6.5mm 7.5mm;
+  margin: 8mm 0 4mm 0;
+  box-shadow: 0 2px 10px rgba(18, 183, 106, 0.08);
+  page-break-inside: avoid;
+}
+.tutor-badge{
+  display: inline-block;
+  background: #059669;
+  color: #fff;
+  font-size: 7.8pt;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 1.2mm 3mm;
+  border-radius: 1mm;
+  margin-bottom: 2.5mm;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.tutor-title{
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 900;
+  font-size: 13.5pt;
+  color: #064E3B;
+  margin: 0 0 1.5mm 0;
+  line-height: 1.3;
+}
+.tutor-subjects{
+  font-weight: 700;
+  font-size: 10.2pt;
+  color: #059669;
+  margin: 0 0 3mm 0;
+}
+.tutor-desc{
+  font-size: 9.4pt;
+  color: var(--ink-soft);
+  margin: 0 0 3.5mm 0;
+  line-height: 1.48;
+}
+.tutor-benefits{
+  list-style: none;
+  margin: 0 0 4mm 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8mm;
+}
+.tutor-benefits li{
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5mm;
+  font-size: 9.2pt;
+  color: #1F2937;
+  line-height: 1.4;
+}
+.tutor-benefits .bullet{
+  color: #059669;
+  font-weight: 900;
+  flex: none;
+}
+.whatsapp-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5mm;
+  background: #25D366;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 9.8pt;
+  padding: 3.2mm 4mm;
+  border-radius: 1.8mm;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.35);
+  margin-bottom: 2mm;
+}
+.tutor-note{
+  font-size: 7.8pt;
+  color: #4B5563;
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+}
+
+.interleave-row{ display:flex; align-items:center; gap:2mm; flex-wrap:wrap; margin:7mm 0; justify-content:center;}
+.interleave-chip{
+  border-radius:50%; width:15mm; height:15mm; display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-size:11pt; color:#fff;
+}
+.chip-a{ background:var(--blue); }
+.chip-b{ background:var(--ink); }
+.chip-c{ background:#8A93A3; }
+.interleave-arrow{ color:var(--gray); font-size:11pt; }
+
+.timeline{ margin:8mm 0; }
+.tl-item{ display:flex; gap:5mm; page-break-inside:avoid; }
+.tl-rail{ flex:none; width:9mm; display:flex; flex-direction:column; align-items:center; }
+.tl-dot{
+  width:8mm; height:8mm; border-radius:50%; background:var(--blue); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-weight:800; font-size:8.5pt;
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; flex:none;
+}
+.tl-line{ flex:1; width:0.6mm; background:var(--blue-pale); min-height:8mm; }
+.tl-body{ padding-bottom:6mm; padding-top:0.5mm; }
+.tl-body .tl-title{ font-weight:700; font-size:10.8pt; margin:0 0 1mm 0; color:var(--ink);}
+.tl-body .tl-desc{ font-size:9.4pt; color:var(--ink-soft); margin:0; line-height:1.5; max-width:135mm;}
+
+.matrix{ display:flex; flex-direction:column; gap:3.2mm; margin:7mm 0; }
+.matrix-item{
+  display:flex; align-items:center; gap:4mm; border:1px solid var(--gray-line);
+  border-radius:2mm; padding:4mm 5mm; background:#fff; page-break-inside:avoid;
+}
+.matrix-item .mi-problem{ flex:1; font-size:9.6pt; color:var(--ink); font-weight:500; }
+.matrix-item .mi-arrow{ color:var(--blue); font-weight:800; font-size:11pt; flex:none; }
+.matrix-item .mi-solution{ flex:1; font-size:9.6pt; color:var(--blue-dark); font-weight:700; }
+
+.checklist{ list-style:none; margin:0 0 6mm 0; padding:0; }
+.checklist li{
+  display:flex; align-items:center; gap:3.5mm; padding:2.6mm 0;
+  border-bottom:1px solid var(--gray-line); font-size:9.8pt;
+  color:var(--ink-soft);
+}
+.checklist li:last-child{ border-bottom:0; }
+.checklist .box{
+  flex:none; width:4.2mm; height:4.2mm; border:1px solid var(--blue);
+}
+.cat-label{
+  font-weight:700; font-size:9pt; letter-spacing:1.5px; text-transform:uppercase;
+  color:var(--blue-dark); margin:8mm 0 2mm 0;
+}
+
+.fiche-block{ margin-bottom:8mm; page-break-inside:avoid; }
+.fiche-block .fb-title{
+  display:flex; align-items:center; gap:3mm; font-weight:800; font-size:10.8pt; color:#fff;
+  background:var(--ink); padding:2.8mm 5mm; border-radius:1.5mm 1.5mm 0 0;
+}
+.fiche-block .fb-num{ color:var(--blue); font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
+.fiche-block .fb-body{ border:1px solid var(--gray-line); border-top:0; padding:5mm 6mm; }
+
+.final-line{
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-weight:900; font-size:19pt; color:var(--ink);
+  text-align:center; margin:12mm 0 4mm 0; line-height:1.3;
+}
+.final-line .hi{ color:var(--blue); }
+
+.small-note{ font-size:8.6pt; color:var(--gray); font-style:italic; }
+strong{ color:var(--ink); font-weight:700; }
+.page-num{
+  position:absolute; bottom:8mm; left:0; right:0; text-align:center;
+  font-family:-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size:9.5pt; color:#9AA1AC; font-weight:500; pointer-events:none;
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== COUVERTURE (ORIGINALE SANS TRAIT SUPPLÉMENTAIRE) ===================== -->
+<section class="cover-page">
+  <div class="cover">
+    <div class="accent-line"></div>
+    <div class="grid-dot"></div>
+    <div class="cover-inner">
+      <div class="cover-kicker">Guide pratique &middot; Méthodes de révision</div>
+      <h1 class="cover-title">Apprendre mieux,<br>pas seulement <span>plus</span></h1>
+      <p class="cover-subtitle">Un guide pratique pour mieux mémoriser, pratiquer et préparer vos examens.</p>
+    </div>
+    <div class="cover-footer">
+      <span>StudyKit</span>
+      <span class="dotline"></span>
+      <span>Édition 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOMMAIRE ===================== -->
+<section class="flow">
+  <div class="kicker">Sommaire</div>
+  <h1 class="toc-title">Ce que vous allez trouver dans ce guide</h1>
+  <div class="toc-rule"></div>
+  <ul class="toc-list">
+    <li><span class="toc-num">—</span><span class="toc-label">Introduction</span></li>
+    <li><span class="toc-num">01</span><span class="toc-label">Le rappel actif</span></li>
+    <li><span class="toc-num">02</span><span class="toc-label">La répétition espacée</span></li>
+    <li><span class="toc-num">03</span><span class="toc-label">La pratique</span></li>
+    <li><span class="toc-num">04</span><span class="toc-label">La pratique entrelacée</span></li>
+    <li><span class="toc-num">05</span><span class="toc-label">Votre plan de révision sur 7 jours</span></li>
+    <li><span class="toc-num">06</span><span class="toc-label">Quelle méthode utiliser ?</span></li>
+    <li><span class="toc-num">07</span><span class="toc-label">Ma fiche de travail</span></li>
+    <li><span class="toc-num">08</span><span class="toc-label">Suis-je vraiment prêt pour mon examen ?</span></li>
+    <li><span class="toc-num">—</span><span class="toc-label">Conclusion</span></li>
+  </ul>
+  <div class="page-num">2</div>
+</section>
+
+<!-- ===================== INTRODUCTION ===================== -->
+<section class="flow">
+  <div class="kicker">Introduction</div>
+
+  <p class="lead">Vous avez probablement déjà connu cette situation.</p>
+
+  <p>Vous avez un examen dans quelques jours. Vous ouvrez votre cours et vous décidez de vous y mettre sérieusement. Vous lisez un premier chapitre. Vous soulignez les passages importants. Vous relisez les définitions. Vous regardez quelques exemples.</p>
+
+  <p>Au bout d'une heure, vous avez l'impression d'avoir bien travaillé.</p>
+
+  <p>Le lendemain, vous reprenez votre cours. Vous reconnaissez les phrases. Vous vous dites : <em>« Oui, ça je connais. »</em> Puis vous fermez le cahier et essayez d'expliquer la notion sans regarder.</p>
+
+  <p>Et là, c'est beaucoup moins évident.</p>
+
+  <p>Vous vous souvenez vaguement du sujet, mais certains détails disparaissent. Vous confondez deux notions. Vous ne vous rappelez plus de la formule. Et lorsqu'il faut résoudre un exercice, vous ne savez plus vraiment par où commencer.</p>
+
+  <p>Alors vous faites ce que beaucoup d'étudiants font : vous relisez. Une fois. Puis deux fois. Puis encore une fois avant l'examen. Pourtant, quelques jours plus tard, une grande partie du contenu semble avoir disparu.</p>
+
+  <div class="pull-quote">Le problème n'est pas forcément que vous ne travaillez pas assez. C'est surtout que certaines façons de travailler donnent une impression de maîtrise sans réellement vous préparer.</div>
+
+  <p>Prenons un exemple simple. Vous rencontrez quelqu'un pour la première fois et vous entendez son prénom. Quelques minutes plus tard, vous vous en souvenez. Une semaine plus tard, vous le croisez dans la rue. Vous reconnaissez parfaitement son visage, mais son prénom vous échappe. Vous l'aviez pourtant bien entendu.</p>
+
+  <p>C'est la même chose avec un cours. Reconnaître une information en la lisant n'est pas la même chose que réussir à la retrouver par vous-même. Et savoir réciter une notion ne signifie pas forcément savoir l'utiliser dans un exercice ou dans une épreuve.</p>
+
+  <p>C'est pour cette raison que ce guide ne va pas vous donner une longue liste d'astuces à essayer au hasard. Vous allez découvrir quatre méthodes complémentaires, chacune répondant à un problème différent.</p>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="m-icon">1</div>
+      <div>
+        <p class="m-name">Le rappel actif</p>
+        <p class="m-desc">Pour apprendre à retrouver une information sans avoir votre cours sous les yeux.</p>
+      </div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">2</div>
+      <div>
+        <p class="m-name">La répétition espacée</p>
+        <p class="m-desc">Pour revoir vos connaissances au fil du temps et éviter de tout oublier après quelques jours.</p>
+      </div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">3</div>
+      <div>
+        <p class="m-name">La pratique</p>
+        <p class="m-desc">Pour passer de « je comprends la méthode » à « je suis capable de l'utiliser seul ».</p>
+      </div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">4</div>
+      <div>
+        <p class="m-name">La pratique entrelacée</p>
+        <p class="m-desc">Pour apprendre à reconnaître quelle notion ou quelle méthode utiliser lorsque plusieurs types de problèmes sont mélangés.</p>
+      </div>
+    </div>
+  </div>
+
+  <p>Nous verrons également comment utiliser les épreuves comme un véritable outil d'apprentissage, et comment organiser ces différentes méthodes dans une séance de travail puis dans un programme de révision.</p>
+
+  <p>L'objectif n'est pas de vous faire travailler davantage. L'objectif est de vous aider à faire en sorte que le temps que vous consacrez à vos études produise davantage de résultats.</p>
+
+  <p>Vous n'avez pas besoin de tout changer aujourd'hui. Commencez avec votre prochain chapitre. Testez les méthodes. Observez vos difficultés. Ajustez votre façon de travailler.</p>
+
+  <p>C'est comme cela que vous construirez progressivement une manière d'apprendre qui vous correspond.</p>
+  <div class="page-num">3</div>
+</section>
+
+<!-- ===================== CHAPITRE 1 ===================== -->
+<section class="flow">
+  <div class="chapter-num">01</div>
+  <div class="kicker">Chapitre 1</div>
+  <h1 class="chapter-title">Le rappel actif</h1>
+  <p class="chapter-lede">Arrêtez de seulement relire. Essayez de vous souvenir.</p>
+
+  <p>Vous venez de passer une heure à étudier un chapitre. Vous avez lu attentivement, souligné les informations importantes et relu les passages difficiles. Vous avez l'impression de bien connaître le cours.</p>
+
+  <p>Mais quelques jours plus tard, lorsque vous essayez de l'expliquer sans regarder vos notes, certaines informations ont disparu. C'est normal. Reconnaître une information en la lisant n'est pas la même chose que réussir à la retrouver seul.</p>
+
+  <p>Le rappel actif consiste justement à entraîner cette capacité. Au lieu de relire encore une fois votre cours, fermez-le et essayez de retrouver ce que vous venez d'apprendre.</p>
+
+  <h2 class="section-title">Comment pratiquer le rappel actif ?</h2>
+  <p>La méthode est simple :</p>
+
+  <div class="step-flow">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <p class="step-title">Apprenez</p>
+        <p class="step-desc">Étudiez une petite partie de votre cours et cherchez d'abord à la comprendre.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <p class="step-title">Fermez votre cours</p>
+        <p class="step-desc">Éloignez vos notes. Vous ne devez plus avoir la réponse sous les yeux.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <p class="step-title">Essayez de vous souvenir</p>
+        <p class="step-desc">Posez-vous des questions : quelles sont les idées principales ? Quelle est la définition de cette notion ? Comment fonctionne-t-elle ? Quelles sont les étapes à retenir ? Répondez sans regarder.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <p class="step-title">Vérifiez</p>
+        <p class="step-desc">Ouvrez votre cours et comparez votre réponse avec ce qui était réellement écrit. Ne cherchez pas uniquement les erreurs : regardez aussi ce que vous aviez oublié.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <p class="step-title">Recommencez plus tard</p>
+        <p class="step-desc">Revenez sur cette notion après un certain temps et testez-vous à nouveau.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Trois façons de vous tester</h2>
+  <div class="card-row">
+    <div class="test-card">
+      <p class="t-title">La feuille blanche</p>
+      <p class="t-desc">Fermez votre cours et écrivez tout ce dont vous vous souvenez sur la notion. Ensuite, comparez votre réponse avec le cours.</p>
+    </div>
+    <div class="test-card">
+      <p class="t-title">Les questions</p>
+      <p class="t-desc">Transformez les informations importantes de votre cours en questions, puis utilisez-les pour vous tester.</p>
+    </div>
+    <div class="test-card">
+      <p class="t-title">L'explication</p>
+      <p class="t-desc">Expliquez la notion à voix haute, avec vos propres mots, sans regarder vos notes.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Ce qu'il faut éviter</h2>
+  <p>Le rappel actif ne consiste pas à regarder la réponse dès que vous hésitez. Laissez votre mémoire chercher. Même si vous ne retrouvez qu'une partie de la réponse, cet effort est utile.</p>
+  <p>Et si vous vous trompez, ce n'est pas un problème. Au contraire, votre erreur vous indique précisément ce que vous devez retravailler.</p>
+
+  <div class="worksheet">
+    <p class="ws-title">À vous de jouer</p>
+    <p class="small-note" style="margin-bottom:5mm;">Choisissez une notion que vous venez d'étudier. Fermez votre cours et répondez.</p>
+    <div class="ws-field"><p class="ws-q">Qu'est-ce que je viens d'apprendre ?</p><div class="ws-line"></div></div>
+    <div class="ws-field"><p class="ws-q">Quelles sont les idées essentielles ?</p><div class="ws-line"></div></div>
+    <div class="ws-field"><p class="ws-q">Qu'est-ce que je suis capable d'expliquer sans regarder ?</p><div class="ws-line"></div></div>
+    <div class="ws-field"><p class="ws-q">Qu'est-ce que j'ai oublié ou mal compris ?</p><div class="ws-line"></div></div>
+    <div class="ws-field" style="margin-bottom:0;"><p class="ws-q">Que dois-je revoir ?</p><div class="ws-line"></div></div>
+  </div>
+
+  <div class="key-quote">
+    <p class="label">À retenir</p>
+    <p class="text">Ne vérifiez pas seulement si vous reconnaissez une information. Vérifiez si vous êtes capable de la retrouver.</p>
+  </div>
+  <p class="small-note">C'est l'une des différences fondamentales entre relire un cours et réellement entraîner sa mémoire.</p>
+  <div class="page-num">4</div>
+</section>
+
+<!-- ===================== CHAPITRE 2 ===================== -->
+<section class="flow">
+  <div class="chapter-num">02</div>
+  <div class="kicker">Chapitre 2</div>
+  <h1 class="chapter-title">La répétition espacée</h1>
+  <p class="chapter-lede">Apprendre aujourd'hui ne garantit pas que vous vous en souviendrez demain.</p>
+
+  <p>Vous pouvez parfaitement connaître un chapitre le soir après l'avoir étudié et avoir beaucoup plus de difficultés à vous en souvenir quelques semaines plus tard. C'est pourquoi attendre la veille d'un examen pour tout revoir n'est généralement pas la meilleure stratégie.</p>
+
+  <p>La répétition espacée consiste à revenir plusieurs fois sur une notion, en laissant volontairement du temps entre chaque révision. L'objectif n'est pas de recommencer tout le cours à chaque fois : il s'agit plutôt de vérifier régulièrement ce que vous êtes encore capable de retrouver.</p>
+
+  <h2 class="section-title">Comment l'utiliser ?</h2>
+  <p>Après avoir appris une nouvelle notion, prévoyez plusieurs rappels. Vous pouvez commencer avec un rythme simple :</p>
+
+  <div class="formula">J1 <span class="plus">→</span> J3 <span class="plus">→</span> J7 <span class="plus">→</span> J14 <span class="plus">→</span> J30</div>
+
+  <p>Ces intervalles ne sont pas une règle absolue. Une notion difficile pourra nécessiter davantage de rappels, tandis qu'une notion que vous maîtrisez bien pourra être revue moins souvent. L'essentiel est de ne pas tout concentrer dans une seule séance.</p>
+
+  <h2 class="section-title">Une révision ne signifie pas forcément relire</h2>
+  <p>C'est là que la répétition espacée devient particulièrement intéressante lorsqu'elle est combinée au rappel actif. Lorsque vous revenez sur une notion :</p>
+
+  <div class="step-flow">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body"><p class="step-title">Fermez d'abord votre cours</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body"><p class="step-title">Essayez de vous rappeler ce que vous savez</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body"><p class="step-title">Vérifiez ensuite vos notes</p></div>
+    </div>
+  </div>
+
+  <p>Vous pouvez ensuite faire un exercice ou expliquer à nouveau la notion si nécessaire. Ainsi, chaque nouvelle révision devient une occasion de tester votre mémoire plutôt qu'une simple relecture.</p>
+
+  <h2 class="section-title">Adaptez vos révisions à votre niveau</h2>
+  <p>Toutes les notions ne méritent pas le même nombre de répétitions. Si vous maîtrisez facilement une notion, espacez davantage vos rappels. Si vous l'oubliez rapidement, rapprochez-les.</p>
+
+  <div class="note-box">
+    <p class="note-title">Règle simple</p>
+    <p style="margin:0;">Plus une notion est difficile à retrouver, plus vous devez la revoir rapidement.</p>
+  </div>
+
+  <h2 class="section-title">Votre planning</h2>
+  <p>Choisissez une notion que vous venez d'apprendre et programmez vos prochains rappels. À chaque date, commencez par vous tester avant de consulter votre cours.</p>
+
+  <table class="clean">
+    <tr><th>Notion</th><th>J1</th><th>J3</th><th>J7</th><th>J14</th><th>J30</th></tr>
+    <tr><td>&nbsp;</td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td></tr>
+    <tr><td>&nbsp;</td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td></tr>
+    <tr><td>&nbsp;</td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td><td><span class="chk"></span></td></tr>
+  </table>
+
+  <div class="key-quote">
+    <p class="label">À retenir</p>
+    <p class="text">Ne révisez pas seulement quand vous avez oublié. Revoyez régulièrement pour empêcher l'oubli de devenir trop important.</p>
+  </div>
+
+  <div class="formula">Répétition espacée <span class="plus">+</span> rappel actif</div>
+  <p class="small-note" style="text-align:center;">Une révision beaucoup plus utile qu'une simple relecture répétée.</p>
+  <div class="page-num">5</div>
+</section>
+
+<!-- ===================== CHAPITRE 3 ===================== -->
+<section class="flow">
+  <div class="chapter-num">03</div>
+  <div class="kicker">Chapitre 3</div>
+  <h1 class="chapter-title">La pratique</h1>
+  <p class="chapter-lede">Comprendre une notion ne signifie pas encore savoir l'utiliser.</p>
+
+  <p>Vous pouvez suivre parfaitement un exercice lorsque quelqu'un vous montre sa résolution. Vous pouvez même vous dire : <em>« C'est logique. J'aurais pu le faire. »</em> Puis vous prenez un exercice seul&hellip; et vous ne savez plus par où commencer.</p>
+
+  <p>Ce n'est pas forcément un problème de compréhension. C'est souvent simplement que vous n'avez pas encore suffisamment pratiqué.</p>
+
+  <div class="pull-quote">Comprendre une méthode et être capable de l'appliquer seul sont deux compétences différentes.</div>
+
+  <p>La pratique sert justement à faire le lien entre les deux. Après avoir étudié une notion, mettez-la immédiatement en application à travers des exercices. Essayez d'abord seul, sans regarder la correction. Si vous bloquez, prenez le temps d'identifier ce qui vous manque avant de chercher la solution.</p>
+
+  <p>Le but n'est pas de réussir tous les exercices du premier coup. Le but est de devenir progressivement capable de résoudre ce que vous ne saviez pas encore faire. Plus vous pratiquez, plus vous apprenez à reconnaître les situations dans lesquelles vos connaissances peuvent être utilisées.</p>
+
+  <h2 class="section-title">Et si vous pratiquiez avec de vraies épreuves ?</h2>
+  <p>Il existe une différence importante entre faire quelques exercices isolés et travailler sur une épreuve complète. Dans un exercice isolé, vous savez souvent déjà quelle notion vous êtes censé utiliser. Dans une épreuve, ce n'est pas toujours le cas.</p>
+
+  <p>Vous devez d'abord comprendre la question, identifier les informations importantes, déterminer quelle notion utiliser, puis construire votre raisonnement. Et c'est justement ce qui rend les épreuves particulièrement intéressantes pour apprendre.</p>
+
+  <p>Une épreuve est généralement constituée d'une suite de questions liées par une logique, qui peut mobiliser plusieurs notions étudiées dans un même cours. En la travaillant sérieusement, vous ne révisez donc pas uniquement une formule ou une définition : vous apprenez aussi à comprendre les relations entre plusieurs notions.</p>
+
+  <p>Prenons un exemple simple. Vous pouvez apprendre séparément plusieurs notions en physique : une formule, une unité, une loi, une méthode de calcul&hellip; Mais face à une épreuve, vous pouvez devoir déterminer quelle loi utiliser, effectuer un calcul, interpréter le résultat et utiliser ensuite ce résultat pour répondre à la question suivante. Vous êtes alors obligé de faire le lien entre plusieurs connaissances. C'est une situation beaucoup plus proche de ce qui vous attend réellement le jour de l'examen.</p>
+
+  <h2 class="section-title">Pourquoi les épreuves sont-elles si utiles ?</h2>
+  <p>Parce qu'elles vous permettent de travailler plusieurs compétences en même temps :</p>
+
+  <div class="flow-diagram">
+    <div class="flow-step">Comprendre la question</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">Identifier les notions nécessaires</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">Faire le lien entre elles</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">Choisir la bonne méthode</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">Résoudre</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">Vérifier votre résultat</div>
+  </div>
+
+  <p>Vous découvrez également vos véritables difficultés. Vous pouvez penser maîtriser un chapitre parce que vous réussissez les exercices que vous avez étudiés. Puis, dans une épreuve, vous réalisez que vous ne savez pas encore reconnaître quand et comment utiliser cette connaissance.</p>
+
+  <p>Ce n'est pas une mauvaise nouvelle. Au contraire : l'épreuve vous montre exactement ce qu'il vous reste à apprendre.</p>
+
+  <!-- ===================== ENCADRÉ PUBLICITAIRE VENTE EBOOK + 31 000 ÉPREUVES ===================== -->
+  <div class="ad-box">
+    <div class="ad-top-bar">
+      <span class="ad-badge">RESSOURCE RECOMMANDÉE</span>
+      <span style="font-size:8.2pt; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.5px;">Accès Immédiat &middot; Édition 2026</span>
+    </div>
+
+    <h3 class="ad-title">DE LA LEÇON À L’ÉPREUVE</h3>
+    <p class="ad-lead">Le guide méthodologique complet pour apprendre à exploiter stratégiquement les épreuves, accompagné de la plus grande banque d'annales et devoirs du Bénin.</p>
+
+    <ul class="ad-checklist">
+      <li>
+        <span class="check-icon">✓</span>
+        <div><strong>+31 000 Épreuves & Devoirs réels</strong> de la 6ème à la Terminale (Toutes séries : A1, A2, B, C, D).</div>
+      </li>
+      <li>
+        <span class="check-icon">✓</span>
+        <div><strong>Épreuves des collèges et lycées d'excellence du Bénin</strong> (CEG Sainte Rita, Lycée Béhanzin, CEG 1 Cotonou, etc.).</div>
+      </li>
+      <li>
+        <span class="check-icon">✓</span>
+        <div><strong>Corrigés types & Examens Blancs départementaux inclus</strong> pour repérer vos lacunes et vous tester en conditions réelles.</div>
+      </li>
+      <li>
+        <span class="check-icon">✓</span>
+        <div><strong>Classé proprement</strong> par Matière, Semestre, Trimestre et Type d'évaluation.</div>
+      </li>
+    </ul>
+
+    <div class="ad-delivery-box">
+      <span style="font-size:12pt; flex:none;">📦</span>
+      <div><strong>Ce que vous recevez immédiatement :</strong> Le livre numérique PDF + Le <strong>Lien Google Drive privé</strong> pour accéder sans limite à toute la banque de 31 000 épreuves. Envoi automatique par email.</div>
+    </div>
+
+    <div class="ad-pricing-bar">
+      <div class="ad-price-col">
+        <span class="ad-old-price">10 000 FCFA</span>
+        <span class="ad-new-price">5 000 FCFA</span>
+      </div>
+      <div class="ad-coupon">
+        CODE PROMO -50% : <strong>STDK2026</strong>
+      </div>
+    </div>
+
+    <a href="https://chariow.com/p/de-la-lecon-a-l-epreuve" target="_blank" rel="noopener noreferrer" class="ad-btn">
+      COMMANDER « DE LA LEÇON À L’ÉPREUVE » & ACCÉDER AUX 31 000 ÉPREUVES &rarr;
+    </a>
+
+    <p class="ad-footer-note">Tous les modes de paiement acceptés (MTN Mobile Money, Moov Money, Wave, Orange Money & Carte Bancaire) &middot; Réception instantanée par email.</p>
+  </div>
+
+  <h2 class="section-title">Ne regardez pas la correction trop rapidement</h2>
+  <p>Lorsque vous bloquez sur un exercice, votre premier réflexe peut être d'ouvrir immédiatement la correction. Essayez plutôt de vous poser quelques questions : qu'est-ce que je connais déjà ? Qu'est-ce que l'exercice me demande ? Quelle notion pourrait être utile ici ? Quelle étape puis-je essayer ?</p>
+
+  <p>Même si vous n'arrivez pas au bout, cet effort est important. Si vous consultez finalement la correction, ne vous contentez pas de la lire : fermez-la et refaites l'exercice seul. C'est cette deuxième tentative qui vous permet de vérifier si vous avez réellement compris ce qui vous avait bloqué.</p>
+
+  <h2 class="section-title">Le carnet d'erreurs</h2>
+  <p>Vos erreurs peuvent devenir un véritable outil d'apprentissage. Lorsque vous vous trompez, notez simplement ce qui suit. Ne cherchez pas à remplir des pages entières : quelques lignes suffisent. L'objectif n'est pas de conserver toutes vos erreurs, mais de repérer celles qui reviennent et de comprendre pourquoi vous les faites.</p>
+
+  <div class="worksheet">
+    <p class="ws-title">Carnet d'erreurs</p>
+    <div class="ws-field"><p class="ws-q">L'exercice</p><div class="ws-line short"></div></div>
+    <div class="ws-field"><p class="ws-q">Mon erreur</p><div class="ws-line short"></div></div>
+    <div class="ws-field"><p class="ws-q">Pourquoi me suis-je trompé ?</p><div class="ws-line short"></div></div>
+    <div class="ws-field"><p class="ws-q">Quelle était la bonne méthode ?</p><div class="ws-line short"></div></div>
+    <div class="ws-field" style="margin-bottom:0;"><p class="ws-q">Que dois-je faire différemment la prochaine fois ?</p><div class="ws-line short"></div></div>
+  </div>
+
+  <div class="key-quote">
+    <p class="label">À retenir</p>
+    <p class="text">Ne mesurez pas votre niveau uniquement à votre capacité à comprendre un cours. Mesurez-le aussi à votre capacité à utiliser ce que vous avez appris sans aide.</p>
+  </div>
+  <p class="small-note">Lire vous permet de découvrir. Vous tester vous permet de retrouver. Pratiquer vous permet de savoir faire. Et les épreuves vous apprennent à mobiliser plusieurs connaissances ensemble, dans des conditions proches de celles de l'examen.</p>
+  <div class="page-num">6</div>
+</section>
+
+<!-- ===================== CHAPITRE 4 ===================== -->
+<section class="flow">
+  <div class="chapter-num">04</div>
+  <div class="kicker">Chapitre 4</div>
+  <h1 class="chapter-title">La pratique entrelacée</h1>
+  <p class="chapter-lede">Ne vous contentez pas de savoir résoudre un exercice. Apprenez à reconnaître ce qu'il faut faire.</p>
+
+  <p>Imaginez que vous venez de terminer un chapitre de mathématiques. Vous faites 15 exercices sur exactement le même type de problème. Au bout d'un moment, vous les réussissez presque tous. Vous pensez donc maîtriser la notion.</p>
+
+  <p>Puis vous prenez une épreuve dans laquelle plusieurs chapitres sont mélangés. Et là, vous bloquez. Pourquoi ? Parce que pendant vos entraînements, vous saviez déjà quelle méthode utiliser. L'épreuve vous demande quelque chose de différent :</p>
+
+  <div class="pull-quote">Identifier d'abord le problème, puis choisir la bonne méthode.</div>
+
+  <p>C'est là que la pratique entrelacée devient intéressante.</p>
+
+  <h2 class="section-title">Le principe</h2>
+  <p>Au lieu de faire longtemps le même type d'exercice, vous mélangez progressivement plusieurs types de problèmes que vous avez déjà étudiés. Par exemple :</p>
+
+  <div class="interleave-row">
+    <div class="interleave-chip chip-a">A</div>
+    <span class="interleave-arrow">→</span>
+    <div class="interleave-chip chip-b">B</div>
+    <span class="interleave-arrow">→</span>
+    <div class="interleave-chip chip-c">C</div>
+    <span class="interleave-arrow">→</span>
+    <div class="interleave-chip chip-a">A</div>
+    <span class="interleave-arrow">→</span>
+    <div class="interleave-chip chip-b">B</div>
+  </div>
+  <p class="small-note" style="text-align:center;">Vous ne savez donc pas à l'avance quelle méthode vous allez devoir utiliser. Cela vous oblige à analyser la situation avant de commencer.</p>
+
+  <h2 class="section-title">Pourquoi est-ce utile ?</h2>
+  <p>Parce qu'un examen ne vous dira généralement pas : <em>« Voici un exercice sur le chapitre 3. Utilisez la méthode que vous venez d'apprendre. »</em> Vous devez déterminer vous-même : qu'est-ce qu'on me demande ? Quelles informations sont importantes ? Quelle notion correspond à ce problème ? Quelle méthode dois-je utiliser ?</p>
+
+  <p>Cette capacité à faire le lien entre une situation et les connaissances nécessaires est une partie importante de la maîtrise d'une matière.</p>
+
+  <h2 class="section-title">Comment commencer ?</h2>
+  <p>Ne mélangez pas tout immédiatement. Commencez par maîtriser les notions séparément. Lorsque vous êtes suffisamment à l'aise, prenez plusieurs exercices provenant de différents chapitres et mélangez-les.</p>
+
+  <p>Après chaque exercice, demandez-vous : <em>pourquoi ai-je choisi cette méthode ?</em> Si vous vous êtes trompé, ne vous contentez pas de regarder la correction. Cherchez à comprendre pourquoi vous n'avez pas reconnu la bonne approche.</p>
+
+  <div class="worksheet">
+    <p class="ws-title">Un exercice simple à faire</p>
+    <p class="small-note" style="margin-bottom:5mm;">Prenez trois chapitres que vous avez déjà étudiés. Choisissez deux exercices pour chaque chapitre. Mélangez les six exercices sans regarder leur chapitre d'origine.</p>
+    <div class="ws-field"><p class="ws-q">Quelle notion dois-je utiliser ?</p><div class="ws-line short"></div></div>
+    <div class="ws-field"><p class="ws-q">Pourquoi ?</p><div class="ws-line short"></div></div>
+    <p class="small-note" style="margin:4mm 0 3mm 0;">Après avoir terminé :</p>
+    <div class="ws-field"><p class="ws-q">Ai-je choisi la bonne méthode ? &nbsp; <span class="chk" style="vertical-align:-1mm;"></span> Oui &nbsp; <span class="chk" style="vertical-align:-1mm;"></span> Non</p></div>
+    <div class="ws-field" style="margin-bottom:0;"><p class="ws-q">Si je me suis trompé, qu'est-ce qui m'a induit en erreur ?</p><div class="ws-line short"></div></div>
+  </div>
+
+  <div class="key-quote">
+    <p class="label">À retenir</p>
+    <p class="text">S'entraîner sur un même type d'exercice vous apprend à le résoudre. Mélanger progressivement les situations vous apprend aussi à reconnaître quelle connaissance utiliser.</p>
+  </div>
+  <p class="small-note">C'est une compétence particulièrement importante lorsque plusieurs notions peuvent apparaître dans une même épreuve.</p>
+  <div class="page-num">7</div>
+</section>
+
+<!-- ===================== CHAPITRE 5 ===================== -->
+<section class="flow">
+  <div class="chapter-num">05</div>
+  <div class="kicker">Chapitre 5</div>
+  <h1 class="chapter-title">Votre plan de révision sur 7 jours</h1>
+  <p class="chapter-lede">Vous savez maintenant comment travailler. Voici comment organiser vos révisions.</p>
+
+  <p>Avoir de bonnes méthodes ne suffit pas si vous les utilisez seulement la veille d'un examen. L'objectif de ce plan est de vous montrer comment répartir votre travail sur plusieurs jours. Prenons une situation simple : vous devez maîtriser un chapitre pour la semaine prochaine. Voici une organisation possible.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-rail"><div class="tl-dot">J1</div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-title">Comprendre</p>
+        <p class="tl-desc">Découvrez le chapitre. Ne cherchez pas encore à tout mémoriser. Découpez-le en petites notions et assurez-vous de comprendre les principales idées. À la fin de votre séance, vous devez pouvoir expliquer les notions importantes avec vos propres mots.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-rail"><div class="tl-dot">J2</div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-title">Se tester</p>
+        <p class="tl-desc">Fermez votre cours. Utilisez le rappel actif pour retrouver les définitions, les idées principales, les formules et les étapes importantes. Vérifiez ensuite vos réponses : les éléments oubliés deviennent vos priorités de révision.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-rail"><div class="tl-dot">J3</div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-title">Pratiquer</p>
+        <p class="tl-desc">Passez aux exercices. Commencez par des exercices directement liés aux notions étudiées. Essayez de les résoudre sans regarder la correction. Notez vos erreurs et reprenez les points qui vous posent problème.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-rail"><div class="tl-dot">J4</div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-title">Revenir sur les difficultés</p>
+        <p class="tl-desc">Ne recommencez pas tout le chapitre. Concentrez-vous sur ce qui vous pose encore problème. Testez-vous à nouveau, puis refaites les exercices sur lesquels vous aviez rencontré des difficultés.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-rail"><div class="tl-dot">J5</div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-title">Mélanger</p>
+        <p class="tl-desc">Prenez des exercices provenant de différentes notions déjà étudiées. Ne cherchez pas à savoir à l'avance quelle méthode utiliser. Analysez chaque problème et déterminez vous-même quelle connaissance ou quelle méthode peut vous permettre de le résoudre.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-rail"><div class="tl-dot">J6</div><div class="tl-line"></div></div>
+      <div class="tl-body">
+        <p class="tl-title">Faire une épreuve</p>
+        <p class="tl-desc">Placez-vous dans des conditions aussi proches que possible de l'examen. Travaillez sur une épreuve sans regarder votre cours, en respectant autant que possible le temps prévu. À la fin, corrigez votre travail et surtout analysez vos erreurs : une erreur peut vous apprendre quelque chose que vous n'aviez pas encore compris.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-rail"><div class="tl-dot">J7</div></div>
+      <div class="tl-body">
+        <p class="tl-title">Faire le bilan</p>
+        <p class="tl-desc">Ne cherchez pas forcément à travailler pendant des heures. Testez-vous une dernière fois sur les notions importantes. Demandez-vous : qu'est-ce que je maîtrise ? Qu'est-ce que j'oublie encore ? Quelles erreurs est-ce que je continue à faire ? Quelles notions dois-je revoir avant l'examen ? Vous pouvez ensuite programmer de nouveaux rappels si l'examen est encore éloigné.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Votre planning</h2>
+  <table class="clean">
+    <tr><th>Jour</th><th>Objectif</th><th style="text-align:center;">Fait</th></tr>
+    <tr><td>J1</td><td>Comprendre</td><td style="text-align:center;"><span class="chk"></span></td></tr>
+    <tr><td>J2</td><td>Rappel actif</td><td style="text-align:center;"><span class="chk"></span></td></tr>
+    <tr><td>J3</td><td>Exercices</td><td style="text-align:center;"><span class="chk"></span></td></tr>
+    <tr><td>J4</td><td>Corriger les difficultés</td><td style="text-align:center;"><span class="chk"></span></td></tr>
+    <tr><td>J5</td><td>Exercices mélangés</td><td style="text-align:center;"><span class="chk"></span></td></tr>
+    <tr><td>J6</td><td>Épreuve</td><td style="text-align:center;"><span class="chk"></span></td></tr>
+    <tr><td>J7</td><td>Bilan</td><td style="text-align:center;"><span class="chk"></span></td></tr>
+  </table>
+
+  <div class="note-box">
+    <p class="note-title">Et si vous avez moins de 7 jours ?</p>
+    <p style="margin:0 0 3mm 0;">Ne laissez pas tomber le système. Vous pouvez simplement le condenser.</p>
+    <p style="margin:0 0 1mm 0;"><strong>Vous avez 3 jours ?</strong> Jour 1 : comprendre + rappel actif. Jour 2 : pratique + correction. Jour 3 : épreuve + révision des difficultés.</p>
+    <p style="margin:0;"><strong>Vous avez seulement une journée ?</strong> Commencez par identifier les notions essentielles, testez-vous rapidement, puis consacrez le maximum de temps disponible à la pratique et aux difficultés. Vous n'aurez évidemment pas le même bénéfice qu'avec une révision étalée dans le temps. Mais même dans ce cas, se tester et pratiquer restent plus utiles que passer toute votre journée à relire passivement le cours.</p>
+  </div>
+
+  <div class="key-quote">
+    <p class="label">À retenir</p>
+    <p class="text">Ne laissez pas toutes vos révisions pour la veille. Répartissez votre travail, testez-vous régulièrement et utilisez vos erreurs pour décider de ce que vous devez revoir.</p>
+  </div>
+  <p class="small-note">Votre planning n'a pas besoin d'être parfait. Il doit simplement vous aider à travailler régulièrement et à savoir quoi faire lorsque vous vous asseyez pour réviser.</p>
+  <div class="page-num">8</div>
+</section>
+
+<!-- ===================== CHAPITRE 6 ===================== -->
+<section class="flow">
+  <div class="chapter-num">06</div>
+  <div class="kicker">Chapitre 6</div>
+  <h1 class="chapter-title">Quelle méthode utiliser ?</h1>
+  <p class="chapter-lede">Vous n'avez pas toujours le même problème lorsque vous étudiez. Dans chaque situation, la méthode à utiliser peut être différente.</p>
+
+  <div class="matrix">
+    <div class="matrix-item">
+      <div class="mi-problem">Je ne comprends pas une notion</div>
+      <div class="mi-arrow">→</div>
+      <div class="mi-solution">Auto-explication</div>
+    </div>
+    <div class="matrix-item">
+      <div class="mi-problem">Je comprends mais j'oublie rapidement</div>
+      <div class="mi-arrow">→</div>
+      <div class="mi-solution">Rappel actif + répétition espacée</div>
+    </div>
+    <div class="matrix-item">
+      <div class="mi-problem">Je connais le cours mais je n'arrive pas à faire les exercices</div>
+      <div class="mi-arrow">→</div>
+      <div class="mi-solution">Pratique</div>
+    </div>
+    <div class="matrix-item">
+      <div class="mi-problem">Je réussis les exercices mais je bloque dans les épreuves</div>
+      <div class="mi-arrow">→</div>
+      <div class="mi-solution">Exercices mélangés + épreuves</div>
+    </div>
+    <div class="matrix-item">
+      <div class="mi-problem">Je connais bien une notion</div>
+      <div class="mi-arrow">→</div>
+      <div class="mi-solution">Espacer les révisions</div>
+    </div>
+    <div class="matrix-item">
+      <div class="mi-problem">Je fais toujours les mêmes erreurs</div>
+      <div class="mi-arrow">→</div>
+      <div class="mi-solution">Carnet d'erreurs</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Le détail de chaque situation</h2>
+
+  <h3 class="sub-title">Je ne comprends pas une notion → l'auto-explication</h3>
+  <p>Reformulez la notion avec vos propres mots. Demandez-vous : qu'est-ce que c'est ? Comment ça fonctionne ? Pourquoi ? Quel exemple puis-je donner ? Retournez ensuite au cours sur les points que vous n'arrivez toujours pas à expliquer.</p>
+
+  <h3 class="sub-title">Je comprends mais j'oublie rapidement → le rappel actif + la répétition espacée</h3>
+  <p>Fermez votre cours. Testez votre mémoire. Vérifiez vos réponses. Puis revenez sur la notion quelques jours plus tard.</p>
+
+  <h3 class="sub-title">Je connais le cours mais je n'arrive pas à faire les exercices → pratiquez davantage</h3>
+  <p>Commencez avec des exercices simples. Essayez sans aide. Analysez vos erreurs. Puis augmentez progressivement la difficulté.</p>
+
+  <h3 class="sub-title">Je réussis les exercices mais je bloque dans les épreuves → exercices mélangés et épreuves</h3>
+  <p>Vous devez apprendre à reconnaître la notion ou la méthode nécessaire sans qu'on vous indique à l'avance laquelle utiliser.</p>
+
+  <h3 class="sub-title">Je connais bien une notion → espacez vos révisions</h3>
+  <p>Ne consacrez pas votre temps uniquement à ce que vous maîtrisez déjà. Testez-vous plus tard pour vérifier si la connaissance tient dans le temps.</p>
+
+  <h3 class="sub-title">Je fais toujours les mêmes erreurs → utilisez votre carnet d'erreurs</h3>
+  <p>Ne vous contentez pas de noter la bonne réponse. Cherchez à comprendre pourquoi vous avez fait cette erreur : c'est souvent cette réponse qui vous permettra de ne plus la reproduire.</p>
+
+  <div class="note-box">
+    <p class="note-title">Votre règle simple</p>
+    <p style="margin:0 0 2mm 0;">Lorsque vous ne savez pas quoi faire, revenez à cette question : <em>« Quel est exactement mon problème ? »</em> Puis choisissez la méthode qui correspond.</p>
+    <p style="margin:0;">Je ne comprends pas → je cherche à comprendre. J'oublie → je me teste et je répète. Je ne sais pas faire → je pratique. Je ne sais pas choisir la méthode → je mélange les exercices. Je répète mes erreurs → je les analyse.</p>
+  </div>
+
+  <div class="key-quote">
+    <p class="label">À retenir</p>
+    <p class="text">Ne changez pas de méthode au hasard. Identifiez d'abord ce qui vous bloque : c'est votre difficulté qui doit déterminer votre façon de travailler.</p>
+  </div>
+  <div class="page-num">9</div>
+</section>
+
+<!-- ===================== CHAPITRE 7 ===================== -->
+<section class="flow">
+  <div class="chapter-num">07</div>
+  <div class="kicker">Chapitre 7</div>
+  <h1 class="chapter-title">Ma fiche de travail</h1>
+  <p class="chapter-lede">Utilisez cette fiche chaque fois que vous commencez un nouveau chapitre.</p>
+
+  <div class="worksheet" style="margin-top:0;">
+    <div style="display:flex; gap:8mm;">
+      <div class="ws-field" style="flex:1;"><p class="ws-q">Matière</p><div class="ws-line short"></div></div>
+      <div class="ws-field" style="flex:1;"><p class="ws-q">Date</p><div class="ws-line short"></div></div>
+    </div>
+    <div class="ws-field" style="margin-bottom:0;"><p class="ws-q">Chapitre / notion</p><div class="ws-line short"></div></div>
+  </div>
+
+  <div class="fiche-block">
+    <div class="fb-title"><span class="fb-num">1</span> JE COMPRENDS</div>
+    <div class="fb-body">
+      <p class="ws-q" style="margin-bottom:2mm;">Quelles sont les notions principales ?</p>
+      <div class="ws-line short" style="margin-bottom:2mm;"></div>
+      <div class="ws-line short" style="margin-bottom:2mm;"></div>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Je les explique avec mes propres mots :</p>
+      <div class="ws-line short" style="margin-bottom:2mm;"></div>
+      <div class="ws-line short"></div>
+    </div>
+  </div>
+
+  <div class="fiche-block">
+    <div class="fb-title"><span class="fb-num">2</span> JE ME TESTE</div>
+    <div class="fb-body">
+      <p class="small-note" style="margin-bottom:3mm;">Fermez votre cours avant de répondre.</p>
+      <p class="ws-q" style="margin-bottom:2mm;">Qu'est-ce que je suis capable de retrouver sans regarder ?</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Qu'est-ce que j'ai oublié ?</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Qu'est-ce que je dois revoir ?</p>
+      <div class="ws-line short"></div>
+    </div>
+  </div>
+
+  <div class="fiche-block">
+    <div class="fb-title"><span class="fb-num">3</span> JE PRATIQUE</div>
+    <div class="fb-body">
+      <p class="ws-q" style="margin-bottom:2mm;">Exercices réalisés</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Ce que j'ai réussi</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Ce qui m'a posé problème</p>
+      <div class="ws-line short"></div>
+    </div>
+  </div>
+
+  <div class="fiche-block">
+    <div class="fb-title"><span class="fb-num">4</span> J'ANALYSE MES ERREURS</div>
+    <div class="fb-body">
+      <p class="ws-q" style="margin-bottom:2mm;">Mon erreur principale</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Pourquoi me suis-je trompé ?</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Comment éviter cette erreur la prochaine fois ?</p>
+      <div class="ws-line short"></div>
+    </div>
+  </div>
+
+  <div class="fiche-block">
+    <div class="fb-title"><span class="fb-num">5</span> JE PROGRAMME LA SUITE</div>
+    <div class="fb-body">
+      <p class="ws-q" style="margin-bottom:2mm;">Prochaine révision</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Ce que je dois revoir</p>
+      <div class="ws-line short" style="margin-bottom:4mm;"></div>
+      <p class="ws-q" style="margin-bottom:2mm;">Épreuve ou exercices à refaire</p>
+      <div class="ws-line short"></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Mon niveau de maîtrise</h2>
+  <p>Avant de passer à autre chose, donnez-vous une note honnête.</p>
+  <ul class="checklist">
+    <li><span class="box"></span> Je ne comprends pas encore</li>
+    <li><span class="box"></span> Je comprends mais j'oublie</li>
+    <li><span class="box"></span> Je comprends et je peux expliquer</li>
+    <li><span class="box"></span> Je sais résoudre des exercices</li>
+    <li><span class="box"></span> Je peux utiliser la notion dans une épreuve</li>
+  </ul>
+  <p class="small-note">Ne cherchez pas à cocher la dernière case immédiatement. L'objectif est de savoir précisément où vous en êtes pour savoir quoi travailler ensuite.</p>
+  <div class="page-num">10</div>
+</section>
+
+<!-- ===================== CHAPITRE 8 ===================== -->
+<section class="flow">
+  <div class="chapter-num">08</div>
+  <div class="kicker">Chapitre 8</div>
+  <h1 class="chapter-title">Suis-je vraiment prêt pour mon examen ?</h1>
+  <p class="chapter-lede">Ne vous fiez pas uniquement à l'impression de connaître votre cours.</p>
+
+  <p>Avant un examen, il est facile de se rassurer en relisant ses notes. Mais la vraie question n'est pas <em>« Est-ce que mon cours me semble familier ? »</em></p>
+
+  <div class="pull-quote">La vraie question est : « Qu'est-ce que je suis capable de faire sans mon cours ? »</div>
+
+  <p>Utilisez cette checklist quelques jours avant votre examen.</p>
+
+  <div class="cat-label">Comprendre</div>
+  <ul class="checklist">
+    <li><span class="box"></span> Je peux expliquer les principales notions avec mes propres mots</li>
+    <li><span class="box"></span> Je comprends les liens entre les différentes notions</li>
+    <li><span class="box"></span> Je peux expliquer les points qui me semblaient difficiles</li>
+  </ul>
+
+  <div class="cat-label">Mémoriser</div>
+  <ul class="checklist">
+    <li><span class="box"></span> Je peux retrouver les informations importantes sans regarder mes notes</li>
+    <li><span class="box"></span> Je me suis testé plusieurs fois</li>
+    <li><span class="box"></span> J'ai revu les notions difficiles à plusieurs reprises</li>
+  </ul>
+
+  <div class="cat-label">Pratiquer</div>
+  <ul class="checklist">
+    <li><span class="box"></span> Je sais appliquer les notions dans des exercices</li>
+    <li><span class="box"></span> Je peux résoudre un exercice sans regarder la correction</li>
+    <li><span class="box"></span> J'ai repris les exercices dans lesquels je me suis trompé</li>
+    <li><span class="box"></span> Je connais mes erreurs les plus fréquentes</li>
+  </ul>
+
+  <div class="cat-label">Épreuves</div>
+  <ul class="checklist">
+    <li><span class="box"></span> J'ai travaillé sur plusieurs épreuves</li>
+    <li><span class="box"></span> J'ai essayé de les faire sans regarder mon cours</li>
+    <li><span class="box"></span> Je me suis chronométré au moins quelques fois</li>
+    <li><span class="box"></span> Je sais identifier les notions nécessaires pour répondre aux questions</li>
+    <li><span class="box"></span> J'ai analysé mes erreurs après chaque épreuve</li>
+  </ul>
+
+  <div class="note-box">
+    <p class="note-title">Le dernier test</p>
+    <p style="margin:0 0 2mm 0;">Prenez une épreuve que vous n'avez jamais faite. Mettez-vous dans les conditions de l'examen : pas de cours, pas de correction, pas d'aide. Respectez le temps prévu. Une fois terminé, corrigez votre travail.</p>
+    <p style="margin:0;">Puis posez-vous une dernière question :</p>
+  </div>
+
+  <div class="worksheet">
+    <p class="ws-title">Si l'examen était demain</p>
+    <p class="ws-q" style="margin-bottom:3mm;">Qu'est-ce que je devrais encore travailler ?</p>
+    <div class="ws-line" style="margin-bottom:3mm;"></div>
+    <div class="ws-line" style="margin-bottom:3mm;"></div>
+    <div class="ws-line"></div>
+  </div>
+
+  <!-- ===================== ENCADRÉ COURS DE MAISON & SOUTIEN SCIENTIFIQUE ===================== -->
+  <div class="tutor-box">
+    <span class="tutor-badge">ENCADREMENT PERSONNALISÉ & SOUTIEN SCOLAIRE</span>
+    <h3 class="tutor-title">Besoin d'un accompagnement sur mesure ?</h3>
+    <div class="tutor-subjects">Cours de Maison d'Excellence &middot; Matières Scientifiques</div>
+    
+    <p class="tutor-desc">Vous souhaitez un suivi individuel pour combler rapidement vos lacunes, consolider vos bases et exceller en classe comme aux examens officiels ? Nous proposons un encadrement à domicile rigoureux et bienveillant.</p>
+
+    <ul class="tutor-benefits">
+      <li><span class="bullet">▸</span> <strong>Matières :</strong> Mathématiques &middot; Physique-Chimie &middot; SVT (Collège & Lycée — Séries C, D, etc.)</li>
+      <li><span class="bullet">▸</span> <strong>Diagnostic personnalisé :</strong> Identification précise des blocages et reprise méthodique des cours</li>
+      <li><span class="bullet">▸</span> <strong>Entraînement intensif :</strong> Travail direct sur des devoirs types et préparation aux examens (BEPC & BAC)</li>
+      <li><span class="bullet">▸</span> <strong>Méthode & Autonomie :</strong> Apprentissage des techniques de travail et de mémorisation efficaces</li>
+    </ul>
+
+    <a href="https://wa.me/2290199563785?text=Bonjour,%20je%20vous%20contacte%20depuis%20le%20guide%20Studykit%20pour%20des%20cours%20de%20maison%20en%20matières%20scientifiques." class="whatsapp-btn" target="_blank">
+      <span>📲</span> CONTACTER SUR WHATSAPP POUR LES COURS DE MAISON (+229 01 99 56 37 85)
+    </a>
+
+    <p class="tutor-note">Disponibilité : Cotonou, Calavi et environs &middot; Suivi individualisé &middot; Places limitées par période.</p>
+  </div>
+
+  <h2 class="section-title">Votre objectif</h2>
+  <p>Vous n'avez pas besoin de pouvoir dire : <em>« Je connais absolument tout. »</em></p>
+  <div class="key-quote">
+    <p class="label">Votre objectif</p>
+    <p class="text">Vous devez pouvoir dire : « Je sais ce que je maîtrise, je connais mes difficultés et je sais comment les travailler. »</p>
+  </div>
+  <p class="small-note">C'est une préparation beaucoup plus réaliste. La confiance ne vient pas seulement du nombre d'heures passées à étudier. Elle vient aussi de la preuve que vous êtes capable de retrouver et d'utiliser ce que vous avez appris.</p>
+  <div class="page-num">11</div>
+</section>
+
+<!-- ===================== CONCLUSION ===================== -->
+<section class="flow">
+  <div class="kicker">Conclusion</div>
+  <h1 class="chapter-title">Maintenant, vous avez un système</h1>
+
+  <p>Vous n'avez pas besoin de retenir chaque phrase de ce guide. Mais vous devez savoir quelle méthode utiliser et pourquoi.</p>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="m-icon">1</div>
+      <div><p class="m-name">Le rappel actif</p><p class="m-desc">Utilisez-le lorsque vous venez d'apprendre une notion, pour vérifier si vous êtes réellement capable de la retrouver sans regarder votre cours.</p></div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">2</div>
+      <div><p class="m-name">La répétition espacée</p><p class="m-desc">Utilisez-la lorsque vous voulez conserver une notion dans le temps, pour revenir dessus à plusieurs moments.</p></div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">3</div>
+      <div><p class="m-name">La pratique</p><p class="m-desc">Utilisez-la lorsque vous devez apprendre à utiliser une notion : pratiquez avec des exercices et analysez vos erreurs.</p></div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">4</div>
+      <div><p class="m-name">La pratique entrelacée</p><p class="m-desc">Utilisez-la lorsque vous commencez à maîtriser plusieurs notions, pour apprendre à reconnaître quelle connaissance mobiliser face à un problème.</p></div>
+    </div>
+  </div>
+
+  <p>Puis allez plus loin avec les épreuves. Elles vous permettent de réunir plusieurs connaissances, de voir les relations entre elles et de vous rapprocher des conditions que vous rencontrerez réellement lors d'un examen.</p>
+
+  <p>Vous pouvez maintenant regarder vos révisions autrement. Vous n'avez plus besoin de vous demander uniquement : <em>« Combien de pages dois-je encore lire ? »</em></p>
+
+  <div class="note-box">
+    <p class="note-title">Demandez-vous plutôt</p>
+    <p style="margin:0;">Est-ce que je peux retrouver cette information sans regarder ? Est-ce que je sais l'utiliser ? Est-ce que je peux reconnaître la méthode nécessaire lorsque le problème change ? Est-ce que je peux mobiliser plusieurs notions dans une épreuve ?</p>
+  </div>
+
+  <p>Ces questions vous donnent une vision beaucoup plus précise de votre niveau. Et surtout, elles vous permettent de transformer vos erreurs en indications.</p>
+
+  <p>Vous avez oublié une notion ? Vous savez quoi revoir. Vous n'arrivez pas à résoudre un exercice ? Vous savez quoi pratiquer. Vous choisissez la mauvaise méthode dans une épreuve ? Vous savez ce que vous devez apprendre à reconnaître. Vous avez oublié une notion après quelques jours ? Vous savez qu'elle doit être revue.</p>
+
+  <div class="pull-quote">C'est finalement ça, apprendre efficacement : ne pas simplement accumuler des heures de travail, mais savoir ce que vous faites pendant ces heures et pourquoi vous le faites.</div>
+
+  <p>Alors, pour votre prochaine séance, ne cherchez pas à appliquer tout le guide d'un coup. Prenez un chapitre. Comprenez-le. Testez-vous avec le rappel actif. Pratiquez. Notez vos erreurs. Revenez dessus quelques jours plus tard. Puis testez-vous à nouveau.</p>
+
+  <p class="final-line">Vous n'avez pas besoin d'apprendre plus longtemps<br>pour commencer à apprendre <span class="hi">mieux</span>.</p>
+  <p class="final-line" style="font-size:14pt; margin-top:2mm;">Vous avez surtout besoin d'une <span class="hi">meilleure méthode</span>.</p>
+  <div class="page-num">12</div>
+</section>
+
+</body>
+</html>
