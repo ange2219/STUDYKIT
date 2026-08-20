@@ -347,6 +347,7 @@ export const PRODUCTS: Product[] = [
     kitNumber: 'KIT ÉLÈVE 01',
     title: 'Mieux Apprendre Ses Cours & Mémoriser Efficacement',
     slug: 'mieux-apprendre-ses-cours',
+    chariowUrl: 'https://fykldcqv.mychariow.co/prd_53pcfeeg/checkout',
     category: 'Méthodes d\'Apprentissage',
     targetAudience: 'eleve',
     audienceLabel: 'Spécial Élève & Étudiant',

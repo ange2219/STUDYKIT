@@ -37,10 +37,11 @@ async function convertToPdf() {
   // Émuler le support d'impression pour activer le CSS @media print
   await page.emulateMediaType('print');
 
-  const htmlUrl = 'http://localhost:5050/ebook-apprendre-mieux.html';
-  console.log(`🌐 Chargement du document depuis ${htmlUrl}...`);
+  const localFilePath = path.resolve(__dirname, '..', 'public', 'ebook-apprendre-mieux.html');
+  const fileUrl = 'file:///' + localFilePath.replace(/\\/g, '/');
+  console.log(`🌐 Chargement du document depuis ${fileUrl}...`);
 
-  await page.goto(htmlUrl, {
+  await page.goto(fileUrl, {
     waitUntil: ['load', 'networkidle0'],
     timeout: 60000
   });
@@ -48,11 +49,11 @@ async function convertToPdf() {
   // Assurer le rendu des polices
   await page.evaluateHandle('document.fonts.ready');
 
-  // Injection forcée du style d'impression pleine page A4 sans bordure parasite
+  // Injection du style d'impression A4 propre
   await page.addStyleTag({
     content: `
       @page {
-        size: 210mm 297mm !important;
+        size: A4;
         margin: 0 !important;
       }
       html, body {
@@ -60,11 +61,10 @@ async function convertToPdf() {
         padding: 0 !important;
         background: transparent !important;
         width: 210mm !important;
-        height: 297mm !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
-      .cover-page, .flow {
+      .cover-page {
         margin: 0 !important;
         box-shadow: none !important;
         border-radius: 0 !important;
@@ -73,16 +73,27 @@ async function convertToPdf() {
         min-height: 297mm !important;
         max-width: 210mm !important;
         page-break-after: always !important;
+        break-after: page !important;
         page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        overflow: hidden !important;
+      }
+      .flow {
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        width: 210mm !important;
+        max-width: 210mm !important;
+        padding: 20mm 18mm 18mm 18mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
       }
       .cover {
         width: 210mm !important;
         height: 297mm !important;
         margin: 0 !important;
       }
-      .flow {
-        padding: 24mm 20mm 22mm 20mm !important;
-      }
+      p { orphans: 3; widows: 3; }
     `
   });
 
