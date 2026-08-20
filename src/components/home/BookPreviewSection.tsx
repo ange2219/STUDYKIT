@@ -28,7 +28,7 @@ export const BookPreviewSection: React.FC<BookPreviewSectionProps> = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={`grid grid-cols-1 ${previewCards.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-4'} gap-6`}>
           {previewCards.map((page, idx) => (
             <div
               key={page.pageNumber}

@@ -414,55 +414,44 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Apprendre mieux, pas seulement plus',
+        subtitle: 'Un guide pratique pour mieux mémoriser, pratiquer et préparer vos examens',
+        summary: 'Couverture & Édition officielle StudyKit 2026. La méthode scientifique pour passer de la révision passive à la réussite concrète.',
+        keyPoints: [
+          'Mémoriser durablement sans bachoter',
+          'Débloquer les exercices d\'application et devoirs surveillés',
+          'Planifier et aborder sereinement les examens'
+        ],
+        snippet: 'Guide pratique · Méthodes de révision. Apprendre mieux, pas seulement plus. Un guide pratique pour mieux mémoriser, pratiquer et préparer vos examens. StudyKit · Édition 2026.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Ce que vous allez trouver dans ce guide',
+        subtitle: 'Un parcours complet en 8 modules structurés pour transformer votre méthode de travail',
+        summary: 'Sommaire officiel : Les 4 piliers méthodologiques, le plan de révision sur 7 jours et les fiches pratiques.',
+        keyPoints: [
+          '01. Le rappel actif (p. 5) & 02. La répétition espacée (p. 7)',
+          '03. La pratique (p. 9) & 04. La pratique entrelacée (p. 12)',
+          '05. Votre plan de révision sur 7 jours (p. 14) & 07. Ma fiche de travail (p. 18)',
+          '08. Suis-je vraiment prêt pour mon examen ? (p. 20) & Conclusion (p. 22)'
+        ],
+        snippet: 'Votre parcours dans ce guide : Introduction (p. 3), 01. Le rappel actif (p. 5), 02. La répétition espacée (p. 7), 03. La pratique (p. 9), 04. La pratique entrelacée (p. 12), 05. Votre plan de révision sur 7 jours (p. 14), 06. Quelle méthode utiliser ? (p. 16), 07. Ma fiche de travail (p. 18), 08. Suis-je vraiment prêt pour mon examen ? (p. 20), Conclusion (p. 22).'
+      },
+      {
+        pageNumber: 3,
         chapter: 'INTRODUCTION',
-        title: 'Le piège de l\'illusion de compétence',
-        subtitle: 'Pourquoi relire et surligner vous donne l\'impression de savoir sans rien retenir',
-        summary: 'Comprendre pourquoi les méthodes traditionnelles échouent et comment réaligner votre cerveau sur l\'effort mémoriel productif.',
+        title: 'Vous avez probablement déjà connu cette situation...',
+        subtitle: 'Pourquoi relire et surligner donne une impression de maîtrise sans réellement vous préparer',
+        summary: 'Comprendre pourquoi reconnaître une information en la lisant n\'est pas la même chose que réussir à la retrouver par vous-même.',
         keyPoints: [
-          'La relecture passive n\'active pas la mémoire de long terme',
-          'La familiarité visuelle n\'est pas la maîtrise conceptuelle',
-          'La difficulté désirable : pourquoi un effort cognitif modéré garantit la rétention'
+          'Vous lisez, vous soulignez et vous avez l\'impression d\'avoir bien travaillé',
+          'Le lendemain, face au cahier fermé, certains détails et formules disparaissent',
+          'Reconnaître une information n\'est pas la même chose que la retrouver seul',
+          'Le problème n\'est pas le manque de travail, mais l\'illusion de maîtrise des méthodes passives'
         ],
-        snippet: 'Lorsque vous relisez vos notes plusieurs fois, le texte devient fluide et familier. Votre cerveau interprète cette aisance visuelle comme un signe de maîtrise. Pourtant, le jour de l\'examen devant une feuille blanche, l\'information est introuvable. C\'est l\'illusion de compétence. Pour retenir, vous devez cesser d\'absorber et commencer à restituer.'
-      },
-      {
-        pageNumber: 14,
-        chapter: 'MÉTHODE 01',
-        title: 'Le Rappel Actif en pratique',
-        subtitle: 'Comment transformer n\'importe quel cours en système d\'auto-évaluation',
-        summary: 'Protocole concret pour fermer vos notes et extraire activement les concepts clés sans aide extérieure.',
-        keyPoints: [
-          'La technique de la feuille blanche (Brain Dump structuré)',
-          'La méthode des questions inversées en marge du cours',
-          'Mesurer votre taux de restitution avec précision'
-        ],
-        snippet: 'Le rappel actif consiste à tester votre mémoire sans regarder la réponse. Après chaque page lue, fermez le document et notez sur une feuille vierge les concepts clés, formules ou mécanismes.'
-      },
-      {
-        pageNumber: 28,
-        chapter: 'MÉTHODE 02',
-        title: 'La Répétition Espacée',
-        subtitle: 'Le calendrier exact des révisions pour contrer la courbe d\'Ebbinghaus',
-        summary: 'Comment planifier vos révisions à J+1, J+3, J+7 et J+21 pour verrouiller vos cours jusqu\'à l\'examen final.',
-        keyPoints: [
-          'Comprendre le moment optimal de révision (juste avant l\'oubli)',
-          'Tableau de planification hebdomadaire prêt à l\'emploi',
-          'Comment gérer le volume de cours sans surcharge'
-        ],
-        snippet: 'Chaque fois que vous réactivez une information au moment où elle s\'apprête à disparaître, la vitesse de dégradation ralentit. En 4 réactivations espacées de 15 minutes, vous retenez davantage qu\'en 6 heures de bachotage continu la veille de l\'examen.'
-      },
-      {
-        pageNumber: 52,
-        chapter: 'OUTIL BONUS',
-        title: 'Le Carnet d\'Erreurs Stratégique',
-        subtitle: 'Le protocole pour ne plus jamais faire deux fois la même erreur',
-        summary: 'Une fiche méthodique pour catégoriser chaque faute et créer une routine de progression.',
-        keyPoints: [
-          'Classification en 3 types d\'erreurs',
-          'La règle de re-test à 48 heures',
-          'Construire votre fiche réflexe avant l\'épreuve'
-        ],
-        snippet: 'Une erreur non documentée est une erreur garantie d\'être reproduite le jour de l\'examen. Le carnet d\'erreurs isole la cause racine : est-ce une méconnaissance de la règle ou une faille de calcul ?'
+        snippet: 'Vous avez un examen dans quelques jours. Vous ouvrez votre cours et vous décidez de vous y mettre sérieusement. Vous lisez un premier chapitre. Vous soulignez les passages importants. Vous relisez les définitions. Au bout d\'une heure, vous avez l\'impression d\'avoir bien travaillé. Le lendemain, vous fermez le cahier et essayez d\'expliquer la notion sans regarder. Et là, c\'est beaucoup moins évident... Le problème n\'est pas que vous ne travaillez pas assez : c\'est que certaines façons de travailler donnent une impression de maîtrise sans réellement vous préparer.'
       }
     ],
     faq: [
@@ -533,16 +522,44 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
-        chapter: 'STRATÉGIE',
-        title: 'L\'analyse en 3 passes du sujet',
-        subtitle: 'Les 10 premières minutes qui déterminent 80% de votre note finale',
-        summary: 'Protocole de lecture active du sujet le jour de l\'épreuve.',
+        chapter: 'COUVERTURE',
+        title: 'De la Leçon à l\'Épreuve',
+        subtitle: 'La méthode pour apprendre, s\'entraîner et devenir autonome au collège et au lycée',
+        summary: 'Fiches pratiques · Exemples guidés · Méthode progressive. StudyKit × Karl Corp&Ind · Édition 2026.',
         keyPoints: [
-          'Passe 1 : Repérage global et points faciles garantis',
-          'Passe 2 : Résolution méthodique sans blocage',
-          'Passe 3 : Traitement des questions complexes et relecture ciblée'
+          'Entrer directement au cœur des situations-problèmes',
+          'Progression active en 4 étapes vers l\'autonomie',
+          '5 cas d\'épreuves réels décortiqués pas-à-pas'
         ],
-        snippet: 'Le premier réflexe d\'un candidat moyen est de se précipiter sur l\'exercice 1 la tête baissée. Les majors d\'examen prennent 8 minutes pour survoler l\'épreuve, hiérarchiser les exercices par rentabilité et sécuriser les points les plus accessibles.'
+        snippet: 'Guide pratique · Collège & Lycée. DE LA LEÇON À L\'ÉPREUVE. La méthode pour apprendre, s\'entraîner et devenir autonome au collège et au lycée. Fiches pratiques · Exemples guidés · Méthode progressive. StudyKit · Édition 2026 · Karl Corp&Ind.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Votre parcours dans l\'ouvrage',
+        subtitle: 'Une progression conçue pour passer de la compréhension à la pratique, puis construire l\'autonomie',
+        summary: 'Sommaire complet : De la méthode en 4 étapes jusqu\'aux 5 études de cas réelles et au Solve Mind.',
+        keyPoints: [
+          '01. Préface — Pourquoi apprendre autrement ? (p. 3)',
+          '02. La méthode : apprendre en pratiquant (les 4 étapes) (p. 4)',
+          '03. De la méthode à l\'épreuve : 5 situations concrètes (p. 5-10)',
+          '04. Face à l\'exercice : le Solve Mind (p. 11-14) & 05. Conclusion (p. 15)'
+        ],
+        snippet: '01. Préface — Pourquoi apprendre autrement ? (p. 3) | 02. La méthode : apprendre en pratiquant (p. 4) | 03. De la méthode à l\'épreuve : 5 situations concrètes (p. 5) | 04. Face à l\'exercice : le Solve Mind (p. 11) | 05. Conclusion : De la pratique à l\'autonomie (p. 15).'
+      },
+      {
+        pageNumber: 3,
+        chapter: 'PRÉFACE',
+        title: 'Pourquoi apprendre autrement ?',
+        subtitle: '« Une once d\'action vaut une bonne théorie » — Friedrich Engels',
+        summary: 'Transformer concrètement une connaissance en compétence face aux exercices et aux épreuves scolaires.',
+        keyPoints: [
+          'Prolongement direct du Tome 1 pour aller au bout de la démarche',
+          'Transformer concrètement les connaissances en compétences réelles',
+          'Refuser les longs exposés théoriques pour privilégier l\'action immédiate',
+          'Apprendre à mobiliser ses acquis dès les premières minutes de l\'épreuve'
+        ],
+        snippet: 'Cet ebook s\'inscrit dans le prolongement d\'une première édition consacrée aux méthodes d\'apprentissage. L\'objectif de cette seconde approche est de montrer comment transformer concrètement une connaissance en compétence, notamment face aux exercices et aux épreuves scolaires. « Une once d\'action vaut une bonne théorie » — Friedrich Engels.'
       }
     ],
     faq: [

@@ -70,7 +70,7 @@ export const BookViewer: React.FC<BookViewerProps> = ({
 
           <div className="flex items-center gap-2">
             <span className="text-xs text-neutral-400 font-mono hidden sm:inline-block mr-2">
-              Page extraite {currentPage.pageNumber} / 84
+              Page {currentPage.pageNumber} · Extrait {currentPageIndex + 1} / {pages.length}
             </span>
             <button
               onClick={onClose}
@@ -87,16 +87,25 @@ export const BookViewer: React.FC<BookViewerProps> = ({
           <div className="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-lg border border-neutral-200 shadow-sm relative">
             {/* Header Stamp */}
             <div className="flex items-center justify-between border-b border-neutral-100 pb-4 mb-6">
-              <div className="text-[11px] font-bold tracking-widest text-[#1677FF] uppercase">
+              <div
+                className="text-[11px] font-bold tracking-widest uppercase font-mono"
+                style={{ color: product.coverTheme?.accentColor || '#1677FF' }}
+              >
                 {product.title} · {currentPage.chapter}
               </div>
               <div className="text-xs font-mono text-neutral-400">
-                P. {currentPage.pageNumber}
+                PAGE {currentPage.pageNumber}
               </div>
             </div>
 
-            <div className="inline-block bg-[#EBF3FF] text-[#1677FF] text-xs font-semibold px-2.5 py-1 rounded mb-3">
-              Section méthodologique
+            <div
+              className="inline-block text-xs font-semibold px-2.5 py-1 rounded mb-3"
+              style={{
+                backgroundColor: `${product.coverTheme?.accentColor || '#1677FF'}15`,
+                color: product.coverTheme?.accentColor || '#1677FF'
+              }}
+            >
+              Extrait officiel n°{currentPageIndex + 1}
             </div>
 
             <h2 className="text-2xl md:text-3xl font-extrabold text-[#111111] mb-2 leading-tight">
