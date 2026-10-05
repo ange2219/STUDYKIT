@@ -251,7 +251,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   className="bg-[#111111] text-white hover:bg-[#1677FF] text-xs font-bold px-5 py-2.5 rounded-full shadow-lg flex items-center gap-2 transition-all hover:scale-105"
                 >
                   <BookOpen size={15} />
-                  <span>Feuilleter un extrait gratuit</span>
+                  <span>Feuilleter l'aperçu gratuit (3 pages)</span>
                 </button>
 
                 {/* Barre de Progression Vivante (4s) & Indicateurs de Position */}
