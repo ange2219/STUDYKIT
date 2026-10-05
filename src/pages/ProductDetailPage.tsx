@@ -73,10 +73,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   setSelectedPreviewPage(0);
                   setPreviewOpen(true);
                 }}
-                className="mt-4 btn btn-secondary btn-block text-xs font-bold flex items-center justify-center gap-2"
+                className="mt-4 btn btn-secondary btn-block text-xs font-bold flex items-center justify-center gap-2 shadow-xs hover:border-[#1677FF]"
               >
                 <BookOpen size={16} />
-                Feuilleter l'aperçu intérieur ({product.previewPages.length} extraits)
+                Feuilleter l'aperçu (3 premières pages)
               </button>
             )}
           </div>
@@ -254,61 +254,103 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
         </div>
       </section>
 
-      {/* APERÇU DU LIVRE */}
+      {/* APERÇU DU LIVRE - UNE SEULE CARTE D'APERÇU */}
       {product.previewPages.length > 0 && (
         <section className="section-sm bg-white border-b border-[#EAECF0]">
           <div className="container">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#1677FF] mb-2 font-mono">
-                  EXTRAITS AUTHENTIQUES
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111111]">
-                  Aperçu du livre
-                </h2>
-                <p className="text-sm text-[#667085]">
-                  Feuilletez {product.previewPages.length} extraits réels du guide avant d'acheter.
-                </p>
+            <div className="max-w-2xl mb-8">
+              <div className="text-xs font-bold uppercase tracking-widest text-[#1677FF] mb-2 font-mono">
+                EXTRAITS AUTHENTIQUES
               </div>
-
-              <button
-                onClick={() => {
-                  setSelectedPreviewPage(0);
-                  setPreviewOpen(true);
-                }}
-                className="btn btn-secondary btn-sm flex items-center gap-2 self-start md:self-end text-xs font-bold"
-              >
-                <BookOpen size={15} />
-                Ouvrir la visionneuse
-              </button>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111111]">
+                Aperçu du livre
+              </h2>
+              <p className="text-sm text-[#667085]">
+                Feuilletez les 3 premières pages réelles du guide avant de commander.
+              </p>
             </div>
 
-            <div className={`grid grid-cols-1 ${product.previewPages.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2 lg:grid-cols-4'} gap-5`}>
-              {product.previewPages.map((page, idx) => (
-                <div
-                  key={page.pageNumber}
-                  onClick={() => {
-                    setSelectedPreviewPage(idx);
-                    setPreviewOpen(true);
-                  }}
-                  className="bg-[#FAFBFC] border border-[#EAECF0] rounded-xl p-5 hover:border-[#1677FF] hover:shadow-md transition-all cursor-pointer group"
-                >
-                  <div className="flex items-center justify-between text-[11px] font-mono text-[#1677FF] font-bold mb-2">
-                    <span>{page.chapter}</span>
-                    <span className="text-neutral-400">P. {page.pageNumber}</span>
+            {/* UNE SEULE CARTE D'APERÇU UNIQUE */}
+            <div
+              onClick={() => {
+                setSelectedPreviewPage(0);
+                setPreviewOpen(true);
+              }}
+              className="bg-gradient-to-br from-[#FAFBFC] via-white to-[#F0F5FF] border-2 border-[#EAECF0] hover:border-[#1677FF] rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group relative overflow-hidden"
+            >
+              {/* Effet décoratif d'ambiance */}
+              <div
+                className="absolute top-0 right-0 w-80 h-80 rounded-full blur-3xl opacity-15 pointer-events-none -mr-20 -mt-20 transition-all duration-500 group-hover:opacity-25"
+                style={{ backgroundColor: product.coverTheme?.accentColor || '#1677FF' }}
+              />
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                {/* Colonne Gauche : Pile de pages et visuel 3D interactif */}
+                <div className="lg:col-span-4 flex flex-col items-center justify-center">
+                  <div className="relative py-2 flex items-center justify-center">
+                    {/* Page 3 en arrière-plan */}
+                    <div className="absolute w-36 sm:w-44 h-48 sm:h-56 bg-white rounded-lg border border-neutral-300 shadow-md transform rotate-6 translate-x-4 translate-y-1 opacity-70 group-hover:rotate-8 group-hover:translate-x-6 transition-transform duration-300 pointer-events-none" />
+                    {/* Page 2 en arrière-plan */}
+                    <div className="absolute w-36 sm:w-44 h-48 sm:h-56 bg-white rounded-lg border border-neutral-300 shadow-md transform -rotate-3 -translate-x-3 translate-y-0.5 opacity-85 group-hover:-rotate-5 group-hover:-translate-x-5 transition-transform duration-300 pointer-events-none" />
+                    {/* Page 1 (Couverture) */}
+                    <div className="relative z-10 transform group-hover:scale-105 transition-transform duration-300 shadow-xl rounded-lg overflow-hidden">
+                      <BookCover product={product} size="md" />
+                    </div>
                   </div>
-                  <h4 className="text-sm font-bold text-[#111111] group-hover:text-[#1677FF] transition-colors mb-2 line-clamp-1">
-                    {page.title}
-                  </h4>
-                  <p className="text-xs text-[#667085] line-clamp-2 mb-3">
-                    {page.summary}
-                  </p>
-                  <div className="text-[11px] font-bold text-[#1677FF] flex items-center gap-1">
-                    <span>Lire l'extrait</span>
-                    <ArrowRight size={12} />
+
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-[#1677FF] bg-[#EBF3FF] px-3 py-1 rounded-full font-mono">
+                    <BookOpen size={13} />
+                    <span>3 PAGES DISPONIBLES</span>
                   </div>
                 </div>
-              ))}
+
+                {/* Colonne Droite : Contenu et Appel à l'action */}
+                <div className="lg:col-span-8 space-y-4">
+                  <div className="inline-flex items-center gap-2 text-xs font-bold font-mono tracking-wider uppercase px-3 py-1 rounded-full bg-blue-50 text-[#1677FF] border border-blue-100">
+                    <span className="w-2 h-2 rounded-full bg-[#1677FF] animate-pulse" />
+                    ACCÈS LIBRE IMMÉDIAT
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#111111] group-hover:text-[#1677FF] transition-colors leading-tight">
+                    Feuilleter les 3 premières pages du guide
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-[#475467] leading-relaxed">
+                    Accédez directement aux 3 premières pages de l'ouvrage : examinez la structure officielle, le sommaire exhaustif et le premier protocole d'application avant de finaliser votre commande.
+                  </p>
+
+                  {/* Aperçu des 3 pages sous forme de jalons */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                    <div className="bg-white/90 border border-[#EAECF0] rounded-xl p-3 shadow-xs">
+                      <div className="text-[11px] font-bold font-mono text-[#1677FF] mb-1">01. COUVERTURE</div>
+                      <div className="text-xs font-semibold text-[#111111] truncate">Identité & Titre officiel</div>
+                    </div>
+                    <div className="bg-white/90 border border-[#EAECF0] rounded-xl p-3 shadow-xs">
+                      <div className="text-[11px] font-bold font-mono text-[#1677FF] mb-1">02. SOMMAIRE</div>
+                      <div className="text-xs font-semibold text-[#111111] truncate">Parcours & Modules</div>
+                    </div>
+                    <div className="bg-white/90 border border-[#EAECF0] rounded-xl p-3 shadow-xs">
+                      <div className="text-[11px] font-bold font-mono text-[#1677FF] mb-1">03. EXTRAIT CLÉ</div>
+                      <div className="text-xs font-semibold text-[#111111] truncate">Première méthode testable</div>
+                    </div>
+                  </div>
+
+                  {/* Bouton d'action */}
+                  <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-4">
+                    <button
+                      className="btn btn-primary font-bold text-sm px-6 py-3 shadow-md flex items-center justify-center gap-2 group-hover:scale-[1.02] transition-transform"
+                    >
+                      <BookOpen size={18} />
+                      <span>Ouvrir l'aperçu (3 premières pages)</span>
+                      <ArrowRight size={16} />
+                    </button>
+                    <span className="text-xs text-[#667085] flex items-center gap-1.5">
+                      <Check size={14} className="text-[#12B76A]" strokeWidth={3} />
+                      Lecture instantanée dans la visionneuse
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
