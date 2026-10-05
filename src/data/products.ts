@@ -67,6 +67,34 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Le Guide Pratique de Préparation de Cours & Évaluations',
+        subtitle: 'Concevoir des cours captivants et des évaluations fiables en divisant par 2 son temps de préparation',
+        summary: 'Couverture & Édition officielle StudyKit Enseignant 2026. L\'ingénierie pédagogique condensée pour les professeurs.',
+        keyPoints: [
+          'Planification modulaire de séquences en 4 étapes',
+          'Création de barèmes critériés équitables et transparents',
+          'Gestion de l\'hétérogénéité et pédagogie différenciée'
+        ],
+        snippet: 'GUIDE PÉDAGOGIQUE OFFICIEL · ÉDITION 2026. Le Guide Pratique de Préparation de Cours & Évaluations. Matrices éprouvées, grilles critériées et protocoles didactiques pour enseignants d\'excellence. StudyKit Enseignement.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Organisation générale du guide enseignant',
+        subtitle: 'Un parcours méthodologique complet en 5 grands modules opérationnels',
+        summary: 'Sommaire complet : De la conception de la fiche de préparation à la gestion du temps de correction et des évaluations.',
+        keyPoints: [
+          'Module 1 : L\'architecture modulaire d\'une séance (p. 4)',
+          'Module 2 : La règle des 3 tiers de la préparation (p. 12)',
+          'Module 3 : Formuler des objectifs opérationnels précis (p. 20)',
+          'Module 4 : Le barème critérié transparent (p. 28)',
+          'Module 5 : Grilles et modèles éditables (p. 36)'
+        ],
+        snippet: 'Sommaire général : Module 1 : L\'architecture modulaire d\'une séance (p. 4) | Module 2 : La règle des 3 tiers (p. 12) | Module 3 : Formuler des consignes non équivoques (p. 20) | Module 4 : Le barème critérié transparent (p. 28) | Module 5 : Grilles et modèles éditables (p. 36).'
+      },
+      {
+        pageNumber: 3,
         chapter: 'INGÉNIERIE',
         title: 'La règle des 3 tiers de la préparation',
         subtitle: 'Comment préparer 2 heures de cours magistral en moins de 30 minutes',
@@ -77,19 +105,6 @@ export const PRODUCTS: Product[] = [
           'Anticiper les 3 blocages majeurs des élèves'
         ],
         snippet: 'Le piège classique de l\'enseignant est de concevoir son cours comme un texte continu. Une séance efficace s\'articule autour de 3 blocs chronométrés : activation des prérequis (10 min), transmission notionnelle ciblée (20 min) et mise en activité autonome guidée (25 min).'
-      },
-      {
-        pageNumber: 24,
-        chapter: 'ÉVALUATION',
-        title: 'Le barème critérié transparent',
-        subtitle: 'Éliminer le flou artistique dans la notation des devoirs et compositions',
-        summary: 'Construire une grille critériée à 4 niveaux d\'acquisition compréhensible par les élèves et les parents.',
-        keyPoints: [
-          'Les 4 critères fondamentaux (Compréhension, Raisonnement, Rédaction, Précision)',
-          'Attribuer les points par palier d\'acquisition',
-          'Faciliter la remédiation après le devoir'
-        ],
-        snippet: 'Une mauvaise note sans grille critériée génère de la frustration. Lorsque l\'élève sait exactement combien de points sont alloués à la démarche logique versus le résultat chiffré, l\'évaluation devient un levier pédagogique puissant.'
       }
     ],
     faq: [
@@ -165,16 +180,42 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
-        chapter: 'ORGANISATION',
-        title: 'L\'arborescence de la banque d\'épreuves',
-        subtitle: 'Comment naviguer et sélectionner rapidement les sujets par niveau',
-        summary: 'Guide d\'accès rapide aux dossiers de sujets classés par série, matière et type d\'évaluation.',
+        chapter: 'COUVERTURE',
+        title: 'Banque Pédagogique : +10 000 Épreuves & Corrigés Types',
+        subtitle: 'L\'archive géante de sujets officiels, interrogations et devoirs surveillés de la 6e à la Terminale',
+        summary: 'Guide d\'exploitation & Index de la plus grande base documentaire d\'épreuves d\'Afrique francophone.',
         keyPoints: [
-          'Dossiers par niveau : 6e, 5e, 4e, 3e, 2nde, 1ère, Terminale',
-          'Interrogations courtes (30 min) vs Devoirs surveillés (2h à 4h)',
-          'Sujets zéro et annales d\'examens officiels (BEPC, Probatoire, BAC)'
+          'Classification par classe (6e à Terminale) et par trimestre',
+          'Sujets accompagnés de corrigés types détaillés et barèmes',
+          'Fichiers PDF propres et prêts à l\'impression immédiate'
         ],
-        snippet: 'Chaque épreuve est cataloguée avec son niveau de difficulté, la durée conseillée et le corrigé associé. Les enseignants peuvent réutiliser les sujets tels quels ou mixer les exercices pour créer des devoirs inédits.'
+        snippet: 'BANQUE PÉDAGOGIQUE STUDYKIT · +10 000 ÉPREUVES & CORRIGÉS. Mathématiques, Physique-Chimie, SVT, Français, Histoire-Géo, Anglais, Philosophie. De la 6e à la Terminale. StudyKit & Karl Corp.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'INDEX & SOMMAIRE',
+        title: 'Arborescence des dossiers & Matières couvertes',
+        subtitle: 'Comment naviguer et sélectionner rapidement les sujets par niveau et par trimestre',
+        summary: 'Organisation de la base cloud : 7 niveaux scolaires, 8 disciplines fondamentales et 3 trimestres indexés.',
+        keyPoints: [
+          'Dossiers 1er Cycle : 6e, 5e, 4e, 3e (BEPC)',
+          'Dossiers 2nd Cycle : 2nde, 1ère, Terminale (Séries A, C, D, E, TI)',
+          'Dossier Spécial Examens Blancs & Annales Officielles Corrigées'
+        ],
+        snippet: 'Index général : 1. Collège (6e à 3e) : 4 200 épreuves | 2. Lycée Scientifique (2nde S, 1ère C/D, Tle C/D) : 3 800 épreuves | 3. Lycée Littéraire (2nde A, 1ère A, Tle A) : 2 000 épreuves | 4. Annales Officielles BAC & BEPC.'
+      },
+      {
+        pageNumber: 3,
+        chapter: 'MÉTHODOLOGIE',
+        title: 'Le protocole de remixage d\'épreuves',
+        subtitle: 'Comment composer un devoir surveillé inédit et équilibré en 15 minutes',
+        summary: 'La matrice de pondération des difficultés pour éviter les devoirs trop faciles ou décourageants.',
+        keyPoints: [
+          'Règle du 40% restitution directe / 40% application / 20% synthèse',
+          'Adapter le barème pour valoriser la démarche logique',
+          'Intégrer une question bonus stimulante pour les élèves rapides'
+        ],
+        snippet: 'Composer une épreuve équilibrée ne consiste pas à empiler des exercices au hasard. La matrice Studykit préconise un premier exercice rassurant (4 points), deux exercices d\'application standard (10 points) et un problème ouvert guidé (6 points).'
       }
     ],
     faq: [
@@ -244,6 +285,33 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Didactique & Pédagogie Active : Captiver et Faire Réussir sa Classe',
+        subtitle: 'Les techniques concrètes pour engager les élèves passifs, maintenir le calme et créer une dynamique de succès',
+        summary: 'Édition officielle StudyKit Didactique. Guide pratique de gestion de classe et de pédagogies actives.',
+        keyPoints: [
+          'Instaurer le silence et l\'écoute dès les 2 premières minutes',
+          'Maximiser le temps d\'engagement actif de chaque apprenant',
+          'Désamorcer les conflits et recadrer avec bienveillance'
+        ],
+        snippet: 'DIDACTIQUE & PÉDAGOGIE ACTIVE. Captiver et Faire Réussir sa Classe. Protocoles pratiques de gestion de classe, rituels d\'attention et méthodes actives. StudyKit · Karl Corp.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Plan d\'action didactique en 5 étapes',
+        subtitle: 'Une progression testée sur le terrain pour transformer l\'ambiance de travail en classe',
+        summary: 'Sommaire : Rituels d\'ouverture, dynamiques collectives, gestion du bruit et évaluation formative.',
+        keyPoints: [
+          'Chapitre 1 : Les 120 secondes décisives en début de cours (p. 6)',
+          'Chapitre 2 : La fin du cours magistral passif (p. 18)',
+          'Chapitre 3 : Rituels d\'attention et gestion du bruit (p. 32)',
+          'Chapitre 4 : La pédagogie de la réussite et feedback valorisant (p. 48)'
+        ],
+        snippet: 'Sommaire : Chapitre 1 : Les 120 secondes décisives (p. 6) | Chapitre 2 : Le piège du cours dialogué passif (p. 18) | Chapitre 3 : Rituels d\'attention et gestion du bruit (p. 32) | Chapitre 4 : Feedback valorisant (p. 48) | Chapitre 5 : Boîte à outils (p. 62).'
+      },
+      {
+        pageNumber: 3,
         chapter: 'DYNAMIQUE',
         title: 'Le piège du cours dialogué avec les 3 mêmes élèves',
         subtitle: 'Pourquoi interroger les élèves qui lèvent la main endort le reste de la classe',
@@ -318,6 +386,33 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Le Kit Clé en Main du Professeur Principal',
+        subtitle: 'Organiser ses conseils de classe, entretiens parents et suivi individuel avec sérénité',
+        summary: 'Guide opérationnel et boîte à outils officielle pour les professeurs principaux de collège et lycée.',
+        keyPoints: [
+          'Trame officielle de synthèse de conseil de classe',
+          'Grille d\'entretien individuel d\'orientation',
+          'Fiche de suivi de l\'élève en difficulté'
+        ],
+        snippet: 'LE KIT DU PROFESSEUR PRINCIPAL · ÉDITION 2026. Conseils de classe, orientation, entretiens et fiches de suivi individuel. StudyKit Enseignement.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Outils et modules du kit professeur principal',
+        subtitle: 'Un répertoire complet de tous les documents et formulaires de l\'année scolaire',
+        summary: 'Sommaire : Rentrée, suivi trimestriel, orientation post-3e/Terminale et relations avec les familles.',
+        keyPoints: [
+          'Partie 1 : Préparer la rentrée et installer les délégués (p. 4)',
+          'Partie 2 : Conduire un conseil de classe efficace en 45 min (p. 14)',
+          'Partie 3 : Réussir les rendez-vous avec les parents d\'élèves (p. 26)',
+          'Partie 4 : Le guide d\'orientation personnalisé (p. 38)'
+        ],
+        snippet: 'Sommaire : Partie 1 : Rentrée et cohésion (p. 4) | Partie 2 : Le conseil de classe en 45 min (p. 14) | Partie 3 : Entretiens parents sereins (p. 26) | Partie 4 : Orientation (p. 38) | Formulaires imprimables (p. 46).'
+      },
+      {
+        pageNumber: 3,
         chapter: 'MÉTHODOLOGIE',
         title: 'La synthèse en 3 indicateurs clés',
         subtitle: 'Présenter le profil d\'un élève en 90 secondes lors du conseil de classe',
@@ -471,6 +566,7 @@ export const PRODUCTS: Product[] = [
     kitNumber: 'KIT ÉLÈVE 02',
     title: 'De la Leçon à l\'Épreuve : La Méthode d\'Examen Gagnante',
     slug: 'de-la-lecon-a-l-epreuve',
+    chariowUrl: 'https://fykldcqv.mychariow.co/prd_8lybuoj2',
     category: 'Examens & Concours',
     targetAudience: 'eleve',
     audienceLabel: 'Spécial Candidat Examens',
@@ -625,6 +721,33 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Fiches & Planning de Révision Express (J-30)',
+        subtitle: 'Le système d\'organisation d\'urgence pour structurer vos 4 semaines clés avant les examens',
+        summary: 'Édition officielle StudyKit Organisation. Le rétro-planning infaillible pour aborder les examens avec sérénité.',
+        keyPoints: [
+          'Calcul du temps utile restant et coefficient de sécurité',
+          'Matrice d\'impact des coefficients et priorité par matière',
+          'Planning mural de 30 jours détachable et remplissable'
+        ],
+        snippet: 'PLANNING DE RÉVISION EXPRESS J-30. Le système d\'organisation d\'urgence pour réussir son Brevet, Baccalauréat et Concours. Templates prêts à l\'emploi & suivi visuel. StudyKit.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Calendrier et structure des 4 semaines de révision',
+        subtitle: 'Un découpage méthodique par phases d\'apprentissage et d\'entraînement intensif',
+        summary: 'Sommaire : Semaine 1 (État des lieux), Semaine 2 (Consolidation), Semaine 3 (Entraînement chronométré), Semaine 4 (Affûtage final).',
+        keyPoints: [
+          'Semaine 1 (J-30 à J-22) : Cartographie des lacunes & Flashcards (p. 6)',
+          'Semaine 2 (J-21 à J-15) : Pratique ciblée et exercices types (p. 16)',
+          'Semaine 3 (J-14 à J-8) : Devoirs en conditions réelles d\'examen (p. 26)',
+          'Semaine 4 (J-7 à J-0) : Stabilisation mémorielle et gestion du stress (p. 36)'
+        ],
+        snippet: 'Sommaire : S-1 : Diagnostic & Fiches (p. 6) | S-2 : Pratique ciblée & Exercices clés (p. 16) | S-3 : Examens blancs sous chrono (p. 26) | S-4 : Révisions allégées & Formulaire (p. 36) | Plannings prêts à imprimer (p. 42).'
+      },
+      {
+        pageNumber: 3,
         chapter: 'ORGANISATION',
         title: 'La méthode de rétro-planning',
         subtitle: 'Calculer ses révisions à partir du jour J en intégrant les imprévus',
@@ -700,6 +823,33 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Le Guide des Flashcards & Cartes Mémoire Scientifiques',
+        subtitle: 'Maîtriser la création de cartes mémoire percutantes et la courbe de l\'oubli pour vos examens',
+        summary: 'Édition officielle StudyKit Mémoire. La méthode scientifique pour retenir formules, définitions et dates à vie.',
+        keyPoints: [
+          'Le principe d\'information minimale (1 carte = 1 fait)',
+          'La boîte de Leitner à 5 compartiments pour espacer les révisions',
+          '30 templates prêts à l\'emploi pour toutes les matières'
+        ],
+        snippet: 'FLASHCARDS & CARTES MÉMOIRE SCIENTIFIQUES. La méthode pour retenir durablement sans surcharger votre mémoire. StudyKit Édition 2026.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Sommaire et progression du guide de mémorisation',
+        subtitle: 'De la conception de votre première carte à l\'automatisation de votre routine quotidienne',
+        summary: 'Sommaire complet : Principes cognitifs, formulation des questions, gestion des boîtes et applications mobiles.',
+        keyPoints: [
+          'Partie 1 : Pourquoi votre cerveau oublie et comment le contrer (p. 4)',
+          'Partie 2 : Les 7 règles d\'or de rédaction d\'une flashcard (p. 14)',
+          'Partie 3 : Le système de révision de Leitner en pratique (p. 28)',
+          'Partie 4 : Flashcards papier vs applications numériques (p. 40)'
+        ],
+        snippet: 'Sommaire : Partie 1 : La science de la mémoire (p. 4) | Partie 2 : Formuler des cartes efficaces (p. 14) | Partie 3 : Les 5 boîtes de Leitner (p. 28) | Partie 4 : Outils smartphone et papier (p. 40) | Modèles de cartes (p. 50).'
+      },
+      {
+        pageNumber: 3,
         chapter: 'PRINCIPES',
         title: 'La règle de l\'information minimale',
         subtitle: 'Pourquoi une carte trop chargée détruit l\'efficacité de la mémorisation',
@@ -783,6 +933,33 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Pack Intégral Enseignant d\'Excellence (4 Guides + 10 000 Épreuves)',
+        subtitle: 'L\'arsenal pédagogique ultime pour préparer ses cours, maîtriser sa classe et évaluer avec rigueur',
+        summary: 'Présentation de la collection complète des 4 guides enseignants Studykit et de la banque cloud de 10 000 épreuves.',
+        keyPoints: [
+          'Les 4 ebooks phares réunis dans une seule archive',
+          'Accès direct et à vie à la base documentaire de 10 000 épreuves',
+          'Tous les modèles Word et PDF éditables inclus'
+        ],
+        snippet: 'PACK INTÉGRAL ENSEIGNANT D\'EXCELLENCE. L\'écosystème pédagogique de référence pour les professeurs du secondaire et du supérieur. StudyKit Enseignement.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Contenu détaillé des 4 guides du pack enseignant',
+        subtitle: 'Une vue synoptique des modules et outils inclus dans chaque tome',
+        summary: 'Sommaire général : Guide de préparation (92p), Banque d\'épreuves (68p), Didactique active (76p), Professeur principal (52p).',
+        keyPoints: [
+          'Guide 1 : Préparation de cours express & Évaluations critériées',
+          'Guide 2 : Guide d\'exploitation des +10 000 sujets & corrigés',
+          'Guide 3 : Rituels d\'attention, gestion de classe & pédagogie active',
+          'Guide 4 : Trames de conseil de classe, entretiens parents & orientation'
+        ],
+        snippet: 'Le pack regroupe 4 volumes exhaustifs totalisant 288 pages de méthodologie de pointe ainsi qu\'un accès cloud instantané à plus de 10 000 devoirs corrigés.'
+      },
+      {
+        pageNumber: 3,
         chapter: 'PACK COMPLET',
         title: 'L\'arsenal complet de l\'enseignant moderne',
         subtitle: 'Une vue d\'ensemble de toutes les méthodes et outils fournis dans ce pack',
@@ -862,6 +1039,33 @@ export const PRODUCTS: Product[] = [
     previewPages: [
       {
         pageNumber: 1,
+        chapter: 'COUVERTURE',
+        title: 'Pack Réussite Totale aux Examens (4 Guides Méthodologiques)',
+        subtitle: 'Toutes les méthodes de mémorisation, d\'entraînement aux épreuves et d\'organisation réunies',
+        summary: 'Présentation du pack complet regroupant les 4 tomes méthodologiques pour élèves et étudiants.',
+        keyPoints: [
+          'Le système complet en 4 guides complémentaires',
+          'Toutes les fiches pratiques et plannings à imprimer',
+          'Économie immédiate de 30% sur l\'ensemble de la collection'
+        ],
+        snippet: 'PACK RÉUSSITE TOTALE AUX EXAMENS. Mémoriser, Pratiquer, Planifier, Maîtriser. La méthode scientifique pour exceller au Brevet, Bac et Supérieur. StudyKit.'
+      },
+      {
+        pageNumber: 2,
+        chapter: 'SOMMAIRE',
+        title: 'Structure des 4 guides du pack élève',
+        subtitle: 'Un parcours en 4 étapes pour transformer ses notes et son efficacité de travail',
+        summary: 'Sommaire : Tome 1 (Mémoriser), Tome 2 (Pratiquer sur épreuves), Tome 3 (Planning J-30), Tome 4 (Flashcards).',
+        keyPoints: [
+          'Tome 1 : Mieux Apprendre Ses Cours & Mémoriser Efficacement (84 p.)',
+          'Tome 2 : Pratiquer avec les Épreuves : La Méthode d\'Examen (72 p.)',
+          'Tome 3 : Fiches & Planning de Révision Express (48 p.)',
+          'Tome 4 : Le Guide des Flashcards & Cartes Mémoire (56 p.)'
+        ],
+        snippet: 'Sommaire général : 1. Mémorisation scientifique | 2. Résolution d\'épreuves et cas réels | 3. Planning d\'urgence J-30 | 4. Flashcards et boîtes de Leitner.'
+      },
+      {
+        pageNumber: 3,
         chapter: 'PACK COMPLET',
         title: 'Le système des 4 piliers de la réussite scolaire',
         subtitle: 'Comment combiner mémorisation, pratique, organisation et cartes mémo',
