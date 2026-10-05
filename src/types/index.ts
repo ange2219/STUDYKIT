@@ -116,6 +116,7 @@ export interface Order {
 }
 
 export type ViewRoute = 
+  | { name: 'digitalLibrary' }
   | { name: 'home' }
   | { name: 'shop'; category?: ProductCategory | string; audience?: TargetAudience; search?: string }
   | { name: 'product'; slug: string }
@@ -124,4 +125,5 @@ export type ViewRoute =
   | { name: 'cart' }
   | { name: 'checkout' }
   | { name: 'confirmation'; orderNumber: string };
+
 
