@@ -38,7 +38,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               className="absolute bottom-3 bg-white/95 text-[#111111] hover:text-[#1677FF] border border-neutral-200 px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 z-20"
             >
               <Eye size={14} />
-              Feuilleter l'extrait
+              Feuilleter l'aperçu (3 pages)
             </button>
           )}
         </div>
