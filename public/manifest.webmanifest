@@ -1,0 +1,14 @@
+{
+  "name": "StudyKit",
+  "short_name": "StudyKit",
+  "description": "Votre bibliothèque scolaire, partout avec vous.",
+  "lang": "fr",
+  "start_url": "/#/bibliotheque",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f9fc",
+  "theme_color": "#075cf5",
+  "icons": [
+    { "src": "/studykit-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
