@@ -4,13 +4,21 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev.mjs",
+    "dev:web": "vite",
+    "dev:api": "node server/index.mjs",
+    "admin:code": "node server/admin.mjs code",
+    "admin:codes": "node server/admin.mjs codes",
+    "admin:reset": "node server/admin.mjs reset",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "pdf": "node scripts/convert-to-pdf.cjs"
+    "pdf": "node scripts/convert-to-pdf.cjs",
+    "cloud:publish-books": "node scripts/publish-books.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "@vercel/blob": "^2.8.0",
     "canvas-confetti": "^1.9.4",
     "lucide-react": "^1.31.0",
     "react": "^19.2.8",

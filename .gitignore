@@ -23,3 +23,26 @@ dist-ssr
 *.sln
 *.sw?
 scratch/
+
+# Secrets and local activation data
+.env*
+!.env.example
+server/data/store.json
+server/data/store.json.tmp
+server/data/exports/
+
+# Temporary npm cache used during local dependency installation
+.npm-cache/
+# Private book originals stay local and are published only to private storage
+/2nde/
+/3ieme/
+/4ieme/
+/resumé 3ieme/
+/documents/
+/*.pdf
+/ebook-*.html
+/public/*.pdf
+/public/ebook-*.html
+/*.PDF
+/public/*.PDF
+/GUIDE_REGLES_REDACTION_LIVRE.md
